@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AuthService {
 
-  private endpoint = environment.endpoint + 'api/auth';
+  private endpoint = environment.endpoint + '/api/auth';
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private options = new RequestOptions({ headers: this.headers });
@@ -43,8 +43,11 @@ export class AuthService {
   }
 
   me() {
+    if(!this.getIdToken()) return;
     this.authHttp.get(this.endpoint + '/me').subscribe((res: any) => {
-      let me = JSON.parse(res._body);
+      // let me = JSON.parse(res._body);
+      let me = res.json();
+      me = me.user;
       this._me.next(new User(
         me.id,
         me.email,
@@ -61,15 +64,15 @@ export class AuthService {
   }
 
   setIdToken(token) {
-    window.localStorage.setItem(this.keyStorage, token);
+    localStorage.setItem(this.keyStorage, token);
   }
 
   getIdToken() {
-    return window.localStorage.getItem(this.keyStorage);
+    return localStorage.getItem(this.keyStorage);
   }
 
   clearIdToken() {
-    window.localStorage.removeItem(this.keyStorage);
+    localStorage.removeItem(this.keyStorage);
   }
 
   private handleError(error: any): Promise<any> {
@@ -79,7 +82,7 @@ export class AuthService {
   }
 
   loggedIn() {
-    return this.getIdToken() !== null &&  this.getIdToken() !== undefined;
+    return tokenNotExpired();
   }
 
 }

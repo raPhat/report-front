@@ -1,0 +1,20 @@
+body {
+  background: url(./assets/images/background_2.jpg) no-repeat center center fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+div.md-tab-label {
+  min-width: 0 !important;
+}
+
+[md-tab-nav-bar], .md-tab-header {
+  border: none;
+}

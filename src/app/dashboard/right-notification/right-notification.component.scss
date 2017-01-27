@@ -1,0 +1,35 @@
+.right_container {
+  color: #FFF;
+}
+
+.right_container .md-tab-label[md-tab-label-wrapper] {
+  width: 50% !important;
+  &.md-tab-label-active {
+    background-color: rgba(#FFF, 0.1);
+  }
+}
+
+.right_container md-list {
+  a {
+    display: block;
+  }
+  a:hover {
+    background-color: rgba(#FFF, 0.15);
+  }
+  a md-list-item {
+    color: #FFF;
+    height: auto !important;
+
+    h4 {
+      font-weight: bold;
+    }
+    md-icon, p {
+      color: rgba(#FFF, 0.3);
+    }
+  } // a md-list-item
+  a .description {
+    margin-top: 0;
+    padding: 0 16px 10px 16px;
+    color: rgba(#FFF, 0.65);
+  } // a .description
+}

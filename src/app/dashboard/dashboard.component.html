@@ -1,0 +1,36 @@
+<div class="dashboard_container">
+  <div class="dash-left" [class.open]="leftOpen">
+    <app-left-menu [leftOpen]="leftOpen" (toggleLeft)="toggleLeft($event)"></app-left-menu>
+  </div>
+  <div class="dash-center" [ngClass]="{'left-open' : leftOpen, 'right-open' : rightOpen}">
+    <div class="container">
+      <!-- <button type="button" name="button" (click)="leftOpen = !leftOpen">left</button>
+      <button type="button" name="button" (click)="rightOpen = !rightOpen">right</button> -->
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+          <md-card>Simple card</md-card>
+        </div>
+        <div class="col-md-4">
+          <md-card>Simple card</md-card>
+        </div>
+        <div class="col-md-4">
+          <md-card>Simple card</md-card>
+        </div>
+      </div>
+      <!-- <div class="divider white"></div> -->
+      <div class="row">
+        <div class="col-sm-12">
+          <md-card>
+            <div class="col-sm-12">
+              <activity-graph></activity-graph>
+            </div> <!-- col-sm-9 -->
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dash-right" [class.open]="rightOpen">
+    <app-right-notification></app-right-notification>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="welcome_container">
+  <div class="container">
+    <div class="welcome-card_container text-center">
+      <div class="welcome-card">
+        <div class="welcome-card_header text-center">
+          <img src="./assets/images/logo.png" alt="">
+        </div><!-- welcome-card_header -->
+        <div class="welcome-card_content">
+          <div *ngIf="!loading">
+            <div class="input">
+              <md-icon>mail outline</md-icon>
+              <md-input-container>
+                <input md-input placeholder="e-mail" [(ngModel)]="credentials.email">
+              </md-input-container>
+            </div>
+            <div class="input">
+              <md-icon>lock</md-icon>
+              <md-input-container>
+                <input md-input type="password" placeholder="password" [(ngModel)]="credentials.password">
+              </md-input-container>
+            </div>
+            <br>
+            <button md-button class="primary" type="button" (click)="login()">
+              Log In <md-icon>send</md-icon>
+            </button>
+          </div>
+          <md-spinner class="center-block" *ngIf="loading"></md-spinner>
+        </div><!-- welcome-card_content -->
+      </div> <!-- welcome-card -->
+      <br>
+      <a href="#"><md-icon>help outline</md-icon><br>Register</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.left_container {
+  margin-top: 175px;
+}
+
+a.active {
+  md-list-item {
+    color: rgba(#FFF, 1);
+    background-color: rgba(#e56514, 0.5);
+  }
+}
+button.toggle {
+  max-width: 100px;
+  min-width: 0;
+  width: 100%;
+  color: rgba(#FFF, 1);
+  background-color: rgba(#e56514, 0.5);
+  &:hover {
+    background-color: rgba(#e56514, 0.8);
+  }
+}
+md-list md-list-item {
+  color: rgba(#FFF, 0.65);
+  &:hover {
+    color: rgba(#FFF, 1);
+    background-color: rgba(#e56514, 0.85);
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+  md-icon, p {
+    color: rgba(#FFF, 0.3);
+  }
+}

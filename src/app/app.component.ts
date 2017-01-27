@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './user/auth.service';
 
 @Component({
@@ -9,25 +10,14 @@ import { AuthService } from './user/auth.service';
 export class AppComponent implements OnInit {
 
   title = 'app works!';
-  cre: any = {
-    'email': '',
-    'password': ''
-  };
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.authService.obMe.subscribe((res) => {
-      console.log(res);
-    });
-  }
-
-  login() {
-    this.authService.login(this.cre).then((res) => {
-      console.log(res);
-    });
+    console.log( this.authService.loggedIn );
   }
 
 }

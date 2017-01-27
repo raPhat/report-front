@@ -1,0 +1,24 @@
+.activity-graph {
+  height: 250px;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+}
+
+.month-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 12px;
+  width: calc((100% / 12) - 24px);
+  max-height: 200px;
+}
+
+.day-box {
+  margin: 2px;
+  width: 25%;
+  padding-top: 25%;
+  background-color: #CCC;
+}

@@ -1,0 +1,19 @@
+.text {
+  &-center {
+    text-align: center;
+  }
+  &-right {
+    text-align: right;
+  }
+}
+
+hr {
+  border: 0;
+  height: 0;
+  &.white {
+    border-top: 1px solid rgba(#fff, 0.35);
+  }
+  &.black {
+    border-top: 1px solid rgba(#000, 0.1);
+  }
+}

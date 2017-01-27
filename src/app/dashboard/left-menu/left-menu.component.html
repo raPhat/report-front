@@ -1,0 +1,26 @@
+<div class="left_container">
+  <md-list>
+    <!-- <h3 md-subheader>Folders</h3> -->
+    <a [routerLink]="['/dashboard/']" [routerLinkActive]="['active']">
+      <md-list-item>
+        <md-icon md-list-avatar>dashboard</md-icon>
+        <h4 md-line>Dashboard</h4>
+        <p md-line> overview the projects </p>
+      </md-list-item>
+    </a>
+    <a (click)="logout()">
+      <md-list-item>
+        <md-icon md-list-avatar>call_missed_outgoing</md-icon>
+        <h4 md-line>Log Out</h4>
+        <p md-line> back to login page </p>
+      </md-list-item>
+    </a>
+  </md-list>
+  <br>
+  <div class="text-center">
+    <button md-button class="toggle" (click)="toggle(!leftOpen)">
+      <md-icon *ngIf="leftOpen">keyboard_arrow_left</md-icon>
+      <md-icon *ngIf="!leftOpen">keyboard_arrow_right</md-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.avatar {
+  margin: 0 auto;
+  max-width: 200px;
+  max-height: 200px;
+
+  > div {
+    width: 100%;
+    padding-top: 100%;
+    background-color: #F0F0F0;
+    background-size: cover;
+    border: 5px solid #E9E9E9;
+  }
+
+  &--circle {
+    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png);
+    border-radius: 50%;
+  }
+  &--box {
+    background-image: url(http://codebastard.co.uk/wp-content/themes/theme/assets/img/avatar.gif);
+    border-radius: 5px;
+  }
+}
+
+.divider {
+  margin: 25px 0;
+  width: 100%;
+  height: 1px;
+  &.white {
+    background-color: rgba(#FFF, 0.15);
+  }
+  &.black {
+    background-color: rgba(#000, 0.1);
+  }
+}

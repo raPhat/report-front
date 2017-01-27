@@ -1,0 +1,72 @@
+@mixin dash-transition {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.dashboard_container {
+  .dash {
+
+    &-left {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 56px;
+      background-color: rgba(#ec8127, 1);
+      box-shadow: 0 0 15px rgba(#000, 0.75);
+      &::after {
+        content: '';
+        opacity: 0.1;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url(./assets/images/top_left.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+      @include dash-transition;
+      &.open {
+        width: 240px;
+      }
+    } // -left
+    &-center {
+      position: absolute;
+      top: 0;
+      left: 56px;
+      right: 0;
+      min-height: 100%;
+      @include dash-transition;
+      &.left-open {
+        left: 240px;
+      }
+      &.right-open {
+        right: 240px;
+      }
+    } // -center
+    &-right {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: -240px;
+      width: 240px;
+      background-color: rgba(#000, 1);
+      box-shadow: 0 0 15px rgba(#000, 0.75);
+      @include dash-transition;
+      &.open {
+        right: 0;
+      }
+    } // -right
+
+  }
+}
+
+md-card {
+  overflow: auto;
+  margin: 12px auto;
+}
