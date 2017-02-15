@@ -26,6 +26,9 @@ export class AuthService {
     private authHttp: AuthHttp
   ) {
     this.obMe = this._me.asObservable();
+    if( !this.loggedIn() ) {
+      this.clearIdToken();
+    }
   }
 
   login(credentials: Object): Promise<any> {

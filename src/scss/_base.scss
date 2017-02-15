@@ -18,3 +18,7 @@ div.md-tab-label {
 [md-tab-nav-bar], .md-tab-header {
   border: none;
 }
+
+md-list a[md-list-item] [md-line], md-list md-list-item [md-line], md-nav-list a[md-list-item] [md-line], md-nav-list md-list-item [md-line] {
+  overflow-x: initial !important;
+}

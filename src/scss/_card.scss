@@ -1,0 +1,40 @@
+.card {
+    &-state {
+        position: relative;
+        color: #FFF;
+        md-icon {
+            float: left;
+            width: 60px;
+            height: 60px;
+            font-size: 60px;
+            // border-right: 1px solid rgba(#FFF, 0.75);
+            opacity: 0.25;
+        }
+        .state {
+            padding-bottom: 10px;
+            text-align: right;
+            border-bottom: 1px solid rgba(#FFF, 0.15);
+            opacity: 0.75;
+            .number {
+                font-size: 48px;
+                font-weight: bold;
+            }
+            .name {
+                display: block;
+                font-size: 16px;
+                opacity: 0.75;
+            }
+        }
+    }
+    &-red {
+        &--1 {
+            background-color: #D32F2F;
+        }
+        &--2 {
+            background-color: #F44336;
+        }
+        &--3 {
+            background-color: #FFC107;
+        }
+    }
+}
