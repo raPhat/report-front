@@ -22,6 +22,7 @@ import { LeftMenuComponent } from './dashboard/left-menu/left-menu.component';
 import { RightNotificationComponent } from './dashboard/right-notification/right-notification.component';
 import { ActivityGraphComponent } from './activity-graph/activity-graph.component';
 import { ActivityMonthComponent } from './activity-graph/activity-month/activity-month.component';
+import { ActivityDayComponent } from './activity-graph/activity-month/activity-day/activity-day.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -41,7 +42,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     LeftMenuComponent,
     RightNotificationComponent,
     ActivityGraphComponent,
-    ActivityMonthComponent
+    ActivityMonthComponent,
+    ActivityDayComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,6 @@
-<p>
-  activity-month works!
-</p>
+<div class="header--text">
+  {{ monthName }}
+</div>
+<div class="month-box">
+  <day-box *ngFor="let d of days"></day-box>
+</div>

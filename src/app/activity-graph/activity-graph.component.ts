@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'activity-graph',
@@ -7,12 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityGraphComponent implements OnInit {
 
-  month: any[] = new Array(12);
-  day: any[] = new Array(30);
+  month: any = [];
+
+  start: any = {
+    'month': 8,
+    'year': 2016
+  };
 
   constructor() { }
 
   ngOnInit() {
+    this.setMonth();
+  }
+
+  setMonth() {
+    let month = this.start.month;
+    let year = this.start.year;
+    for(let i=1; i<=12; i++) {
+      if(month !== 12) {
+        month++;
+      } else {
+        month = 1;
+        year++;
+      }
+      this.month.push({
+        'no': month,
+        'year': year
+      })
+    }
   }
 
 }

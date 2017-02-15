@@ -16,8 +16,6 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    console.log( this.authService.loggedIn );
-  }
+  ngOnInit() {}
 
 }

@@ -1,24 +1,39 @@
-.activity-graph {
-  height: 250px;
-}
+.activity-graph {}
 
 .body {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
-.month-box {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 0 12px;
-  width: calc((100% / 12) - 24px);
-  max-height: 200px;
+month-box {
+    width: calc((100% / 12) - 24px);
+    margin: 0 12px;
 }
 
-.day-box {
-  margin: 2px;
-  width: 25%;
-  padding-top: 25%;
-  background-color: #CCC;
+.footer {
+    .day-box {
+        float: left;
+        margin: 0 2px;
+        width: 16px;
+        height: 16px;
+        background-color: #EEE;
+        border-radius: 50%;
+        &.b100 {
+            background-color: rgba(#ec8127, 0.85);
+        }
+        &.b75 {
+            background-color: rgba(#ec8127, 0.65);
+        }
+        &.b50 {
+            background-color: rgba(#ec8127, 0.4);
+        }
+        &.b25 {
+            background-color: rgba(#ec8127, 0.15);
+        }
+    }
+    .text {
+        float: right;
+        font-size: 12px;
+        color: #999;
+    }
 }

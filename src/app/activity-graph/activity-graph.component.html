@@ -1,15 +1,19 @@
 <div class="activity-graph">
-  <div class="header">
+  <!--<div class="header">
 
   </div>
-  <div class="divider black"></div>
+  <div class="divider black"></div>-->
   <div class="body">
-    <div class="month-box" *ngFor="let m of month">
-      <div class="day-box" *ngFor="let d of day"></div>
-    </div>
+    <month-box [month]="m" *ngFor="let m of month"></month-box>
     <div style="clear: both"></div>
   </div>
+  <div class="divider black"></div>
   <div class="footer">
-
+    <div class="day-box"></div>
+    <div class="day-box b25"></div>
+    <div class="day-box b50"></div>
+    <div class="day-box b75"></div>
+    <div class="day-box b100"></div>
+    <div class="text">Summary of issues, merge requests, and push events</div>
   </div>
 </div>
