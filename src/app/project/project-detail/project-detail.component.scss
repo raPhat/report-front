@@ -1,0 +1,82 @@
+md-card.cover {
+    position: relative;
+    padding: 0;
+    min-height: 80px;
+    background-image: url(https://www.buzzwoo.de/sites/default/files/bg_images/porsche-cayman-image.jpg);
+    background-size: cover;
+    .cover-box {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(#000, 0.75);
+        .cover-title {
+            text-align: center;
+            .title {
+                font-size: 24px;
+                color: rgba(#FFF, 0.85);
+            }
+            .description {
+                font-size: 14px;
+                color: rgba(#FFF, 0.5);
+            }
+        }
+    }
+}
+
+.project-detail .md-tab-label {
+    width: 50%;
+    color: #FFF;
+    md-icon {
+        position: relative;
+        top: 7px;
+        color: rgba(#FFF, 0.5);
+    }
+}
+
+md-card.list {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    .action-group {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        button.action {
+          cursor: pointer;
+          height: 100%;
+          color: rgba(#000, 0.35);
+          border: none;
+          border-left: 1px solid rgba(#000, 0.1);
+          background-color: transparent;
+          &:hover {
+            color: rgba(#000, 0.75);
+          }
+        }
+    }
+    md-icon {
+        opacity: 0.5;
+        width: 24px;
+        height: 24px;
+    }
+    .task-name {
+        font-weight: bold;
+        color: rgba(#FFF, 0.95);
+    }
+    .task-start {
+        color: rgba(#FFF, 0.5);
+    }
+    &.todo {
+        background-color: #2E7D32;
+    }
+    &.doing {
+        background-color: #689F38;
+    }
+    &.done {
+        background-color: #8BC34A;
+    }
+}

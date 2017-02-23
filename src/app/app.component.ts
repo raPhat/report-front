@@ -16,6 +16,11 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.authService.isExpired());
+    if ( !this.authService.isExpired() ) {
+      this.authService.clearIdToken();
+    }
+  }
 
 }

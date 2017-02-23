@@ -26,6 +26,13 @@
             }
         }
     }
+    &-skyBlue {
+        color: #FFF;
+        background-color: #257FD2;
+        .header {
+            color: rgba(#FFF, 0.75);
+        }
+    }
     &-red {
         &--1 {
             background-color: #D32F2F;
@@ -35,6 +42,17 @@
         }
         &--3 {
             background-color: #FFC107;
+        }
+    }
+    &-green {
+        &--1 {
+            background-color: #2E7D32;
+        }
+        &--2 {
+            background-color: #689F38;
+        }
+        &--3 {
+            background-color: #8BC34A;
         }
     }
 }
