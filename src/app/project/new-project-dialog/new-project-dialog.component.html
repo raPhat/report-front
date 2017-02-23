@@ -1,0 +1,34 @@
+<div class="dialog-container">
+  <div md-dialog-title>
+    <md-icon>add_circle</md-icon>
+    New project
+  </div>
+  <md-dialog-content>
+    <form [formGroup]="myForm" class="form-container" novalidate>
+      <md-input-container>
+        <input md-input placeholder="Project name" [formControlName]="'name'">
+      </md-input-container>
+      <md-input-container>
+        <textarea class="description" md-input placeholder="Description" [formControlName]="'description'"></textarea>
+      </md-input-container>
+      <div class="input-container">
+        <div class="label">Date</div>
+        <my-date-range-picker class="max-width"
+          name="mydaterange"
+          [options]="myDateRangePickerOptions"
+          (dateRangeChanged)="onDateRangeChanged($event)"
+          [formControlName]="'range'"></my-date-range-picker>
+      </div>
+      <div class="input-container">
+        <div class="label">Image</div>
+        <input type="file" placeholder="Image">
+      </div>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions [attr.align]="actionsAlignment">
+    <button md-raised-button color="primary" (click)="submitForm()">
+      CREATE
+    </button>
+    <button md-button color="primary" md-dialog-close>CANCEL</button>
+  </md-dialog-actions>
+</div>

@@ -9,6 +9,7 @@ export class AuthGuardService {
   constructor(private auth: AuthService, private router: Router) {}
 
   canActivate() {
+    console.log(this.auth.isExpired());
     return true;
   }
 

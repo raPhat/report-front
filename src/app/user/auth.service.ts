@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable, Subject } from 'rxjs';
-import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
+import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
 
 import { User } from '../shared/models/user';
@@ -23,12 +23,10 @@ export class AuthService {
 
   constructor(
     private http: Http,
-    private authHttp: AuthHttp
+    private authHttp: AuthHttp,
+    private jwtHelper: JwtHelper
   ) {
     this.obMe = this._me.asObservable();
-    if( !this.loggedIn() ) {
-      this.clearIdToken();
-    }
   }
 
   login(credentials: Object): Promise<any> {
@@ -46,7 +44,7 @@ export class AuthService {
   }
 
   me() {
-    if(!this.getIdToken()) return;
+    if(!this.getIdToken()) { return; }
     this.authHttp.get(this.endpoint + '/me').subscribe((res: any) => {
       // let me = JSON.parse(res._body);
       let me = res.json();
@@ -86,6 +84,11 @@ export class AuthService {
 
   loggedIn() {
     return tokenNotExpired();
+  }
+
+  isExpired() {
+    if (!this.getIdToken()) { return false; }
+    return this.jwtHelper.isTokenExpired(this.getIdToken());
   }
 
 }

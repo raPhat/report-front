@@ -1,0 +1,29 @@
+.md-dialog-container {
+  width: 500px;
+  padding: 0;
+  [md-dialog-title] {
+    padding: 24px;
+    color: rgba(#000, 0.5);
+    // background-color: #ec8127;
+    border-bottom: 1px solid rgba(#000, 0.05);
+    text-transform: uppercase;
+    md-icon {
+      width: 28px;
+      height: 28px;
+      .material-icons {
+        font-size: 28px;
+      }
+    }
+  }
+  md-dialog-content {
+    margin: 0;
+    padding: 24px;
+  }
+  md-dialog-actions {
+    padding: 24px;
+    background-color: $orange;
+  }
+  md-dialog-actions:last-child {
+    margin-bottom: 0;
+  }
+}

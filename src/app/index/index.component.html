@@ -1,0 +1,71 @@
+<!-- <button type="button" name="button" (click)="leftOpen = !leftOpen">left</button>
+      <button type="button" name="button" (click)="rightOpen = !rightOpen">right</button> -->
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <md-card class="card-state card-red--1">
+      <md-icon>accessibility</md-icon>
+      <div class="state">
+        <span class="number">110</span>
+        <span class="name">state</span>
+      </div>
+    </md-card>
+  </div>
+  <div class="col-md-4">
+    <md-card class="card-state card-red--2">
+      <md-icon>accessibility</md-icon>
+      <div class="state">
+        <span class="number">110</span>
+        <span class="name">state</span>
+      </div>
+    </md-card>
+  </div>
+  <div class="col-md-4">
+    <md-card class="card-state card-red--3">
+      <md-icon>accessibility</md-icon>
+      <div class="state">
+        <span class="number">110</span>
+        <span class="name">state</span>
+      </div>
+    </md-card>
+  </div>
+</div>
+<!-- .row -->
+<!-- <div class="divider white"></div> -->
+<div class="row">
+  <div class="col-sm-12">
+    <md-card>
+      <div class="col-sm-12 col-activity-graph">
+        <activity-graph></activity-graph>
+      </div>
+      <!-- col-sm-9 -->
+    </md-card>
+  </div>
+</div>
+<!-- .row -->
+<div class="divider white"></div>
+<div class="row projects-card-container">
+  <div class="col-sm-6 col-xs-12">
+    <md-card class="card-skyBlue">
+      <a [routerLink]="['/dashboard/project/1']">
+        <h3 class="header">
+          Title Name
+        </h3>
+      </a>
+      <div class="divider white"></div>
+    </md-card>
+  </div>
+  <div class="col-sm-6 col-xs-12">
+    <md-card class="card-skyBlue">s</md-card>
+  </div>
+  <div class="col-xs-12">
+    <div class="button-create">
+      <button (click)="openDialog()">
+              <md-icon>add</md-icon>
+              <br>
+              <span>Create new project</span>
+            </button>
+    </div>
+  </div>
+</div>
+<!-- .row -->

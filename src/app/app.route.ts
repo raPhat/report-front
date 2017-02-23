@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
+import { IndexComponent } from './index/index.component';
 
 import { AuthGuardService } from './user/auth-guard.service';
 
@@ -16,7 +18,22 @@ const appRoutes: Routes = [
     {
       path: 'dashboard',
       component: DashboardComponent,
-      canActivate: [AuthGuardService]
+      canActivate: [AuthGuardService],
+      children: [
+        {
+          path: '',
+          redirectTo: 'index',
+          pathMatch: 'full'
+        },
+        {
+          path: 'index',
+          component: IndexComponent
+        },
+        {
+          path: 'project/:id',
+          component: ProjectDetailComponent
+        }
+      ]
     },
     {
       path: '*',
