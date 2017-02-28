@@ -1,3 +1,7 @@
+import { TaskService } from './task/task.service';
+import { ProjectGuardService } from './project/project-guard.service';
+import { DateService } from './shared/services/date.service';
+import { ProjectService } from './project/project.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,8 +12,10 @@ import 'hammerjs';
 
 import { MaterialModule } from '@angular/material';
 import { AUTH_PROVIDERS, AuthConfig, AuthHttp, provideAuth, JwtHelper } from 'angular2-jwt';
+import { MyDatePickerModule } from 'mydatepicker';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { DndModule } from 'ng2-dnd';
+import { MomentModule } from 'angular2-moment';
 
 import { AuthService } from './user/auth.service';
 import { UserService } from './user/user.service';
@@ -29,6 +35,10 @@ import { ProjectDetailComponent } from './project/project-detail/project-detail.
 import { NewProjectDialogComponent } from './project/new-project-dialog/new-project-dialog.component';
 import { IndexComponent } from './index/index.component';
 import { CardTableComponent } from './project/card-table/card-table.component';
+import { CreateTaskDialogComponent } from './task/create-task-dialog/create-task-dialog.component';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { OrderByPipe } from './shared/pipes/order-by.pipe';
+import { DateDialogComponent } from './dialogs/date-dialog/date-dialog.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -53,7 +63,11 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     NewProjectDialogComponent,
     ProjectDetailComponent,
     IndexComponent,
-    CardTableComponent
+    CardTableComponent,
+    CreateTaskDialogComponent,
+    ConfirmDialogComponent,
+    OrderByPipe,
+    DateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +75,11 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HttpModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
+    MyDatePickerModule,
     MyDateRangePickerModule,
     ReactiveFormsModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    MomentModule
   ],
   providers: [
     {
@@ -77,10 +93,17 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     JwtHelper,
     AuthService,
     UserService,
-    AuthGuardService
+    AuthGuardService,
+    ProjectService,
+    DateService,
+    ProjectGuardService,
+    TaskService
   ],
   entryComponents: [
-    NewProjectDialogComponent
+    NewProjectDialogComponent,
+    CreateTaskDialogComponent,
+    ConfirmDialogComponent,
+    DateDialogComponent
   ],
   bootstrap: [AppComponent]
 })

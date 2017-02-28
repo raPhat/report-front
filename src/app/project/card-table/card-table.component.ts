@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Project } from '../../shared/models/project';
+import { TaskService } from '../../task/task.service';
+import { Task } from './../../shared/models/task';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-table',
@@ -8,33 +11,36 @@ import { Component, OnInit } from '@angular/core';
 export class CardTableComponent implements OnInit {
 
   // Card Column
-  todo: any[] = [1, 2, 3];
-  doing: any[] = [1];
-  done: any[] = [1, 2];
+  @Input() tasks: Task[];
+  @Input() project: Project;
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit() {
   }
 
   dropTodo(e) {
     console.log(e);
-    this.todo.push(e);
+    this.taskService.changeType('ToDo', e.dragData);
   }
 
   dropDoing(e) {
     console.log(e);
-    this.doing.push(e);
+    this.taskService.changeType('Doing', e.dragData);
   }
 
   dropDone(e) {
     console.log(e);
-    this.done.push(e);
+    this.taskService.changeType('Done', e.dragData);
   }
 
   onDragSuccess(index, col) {
-    console.log('drag')
-    col.splice(index, 1);
+    console.log('drag');
+    let task: any = this.tasks[index];
+    task.task_type_id = col;
+    this.taskService.getTasksByProject(this.project.id);
   }
 
   openTask() {

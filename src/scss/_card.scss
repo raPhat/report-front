@@ -29,7 +29,7 @@
     &-skyBlue {
         color: #FFF;
         background-color: #257FD2;
-        .header {
+        .header, .header * {
             color: rgba(#FFF, 0.75);
         }
     }
@@ -55,4 +55,16 @@
             background-color: #8BC34A;
         }
     }
+}
+
+md-card {
+  .header {
+    .action-group {
+      float: right;
+      button {
+        position: relative;
+        top: -10px;
+      }
+    }
+  }
 }

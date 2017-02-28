@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   me() {
-    if(!this.getIdToken()) { return; }
+    if (!this.getIdToken()) { return; }
     this.authHttp.get(this.endpoint + '/me').subscribe((res: any) => {
       // let me = JSON.parse(res._body);
       let me = res.json();
@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   isExpired() {
-    if (!this.getIdToken()) { return false; }
+    if (!this.getIdToken()) { return true; }
     return this.jwtHelper.isTokenExpired(this.getIdToken());
   }
 

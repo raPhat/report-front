@@ -28,7 +28,7 @@ md-card.cover {
 }
 
 .project-detail .md-tab-label {
-    width: 50%;
+    width: 33.33%;
     color: #FFF;
     md-icon {
         position: relative;
@@ -46,13 +46,25 @@ md-card.list {
         top: 0;
         bottom: 0;
         right: 0;
-        button.action {
+        .action {
           cursor: pointer;
           height: 100%;
+          min-width: 75px;
           color: rgba(#000, 0.35);
+          text-align: center;
           border: none;
           border-left: 1px solid rgba(#000, 0.1);
           background-color: transparent;
+          &.general {
+            border: none;
+            &.delete {
+              color: rgba(#900, 0.5);
+              margin-right: 10px;
+              &:hover {
+                color: rgba(#900, 0.85);
+              }
+            }
+          }
           &:hover {
             color: rgba(#000, 0.75);
           }
@@ -67,16 +79,17 @@ md-card.list {
         font-weight: bold;
         color: rgba(#FFF, 0.95);
     }
-    .task-start {
+    p.task-start {
+        font-size: 12px;
         color: rgba(#FFF, 0.5);
     }
-    &.todo {
+    &.ToDo {
         background-color: #2E7D32;
     }
-    &.doing {
+    &.Doing {
         background-color: #689F38;
     }
-    &.done {
+    &.Done {
         background-color: #8BC34A;
     }
 }

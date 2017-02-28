@@ -1,7 +1,8 @@
-div.mydrp {
+div.mydrp, div.mydp {
   width: 100% !important;
 }
 
-.max-width .mydrp .selector {
+.max-width .mydrp .selector, .max-width .mydp .selector {
   width: 100% !important;
 }
+

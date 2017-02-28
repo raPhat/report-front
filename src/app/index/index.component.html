@@ -45,26 +45,31 @@
 <!-- .row -->
 <div class="divider white"></div>
 <div class="row projects-card-container">
-  <div class="col-sm-6 col-xs-12">
+  <div class="col-sm-6 col-xs-12" *ngFor="let project of projects">
     <md-card class="card-skyBlue">
-      <a [routerLink]="['/dashboard/project/1']">
-        <h3 class="header">
-          Title Name
-        </h3>
-      </a>
+      <h3 class="header">
+        <a [routerLink]="['/dashboard/project/', project.id]">
+          {{ project.name }}
+        </a>
+        <div class="action-group">
+          <button md-mini-fab (click)="editProjectDialog(project)"><md-icon>edit</md-icon></button>
+          <button md-mini-fab color="warn" (click)="removeProject(project.id)"><md-icon>delete</md-icon></button>
+        </div>
+      </h3>
       <div class="divider white"></div>
+      <p>
+        {{ project.description }}
+      </p>
     </md-card>
   </div>
-  <div class="col-sm-6 col-xs-12">
-    <md-card class="card-skyBlue">s</md-card>
-  </div>
+  <!-- .col card -->
   <div class="col-xs-12">
     <div class="button-create">
       <button (click)="openDialog()">
-              <md-icon>add</md-icon>
-              <br>
-              <span>Create new project</span>
-            </button>
+        <md-icon>add</md-icon>
+        <br>
+        <span>Create new project</span>
+      </button>
     </div>
   </div>
 </div>
