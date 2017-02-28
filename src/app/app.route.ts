@@ -1,3 +1,4 @@
+import { ProjectGuardService } from './project/project-guard.service';
 import { NgModule } from '@angular/core';
 
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -31,7 +32,10 @@ const appRoutes: Routes = [
         },
         {
           path: 'project/:id',
-          component: ProjectDetailComponent
+          component: ProjectDetailComponent,
+          resolve: {
+            project: ProjectGuardService
+          }
         }
       ]
     },

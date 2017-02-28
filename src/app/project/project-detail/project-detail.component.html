@@ -4,8 +4,8 @@
       <md-card class="cover">
         <div class="cover-box">
           <div class="cover-title">
-            <div class="title">Project Name</div>
-            <div class="description">Excepteur mollit duis consequat ad esse.</div>
+            <div class="title">{{ project.name }}</div>
+            <div class="description">{{ project.description }}</div>
           </div>
         </div>
       </md-card>
@@ -15,7 +15,7 @@
       <md-card class="card-state card-green--1">
         <md-icon>assignment</md-icon>
         <div class="state">
-          <span class="number">110</span>
+          <span class="number">{{ state.ToDo || 0 }}</span>
           <span class="name">To-Do</span>
         </div>
       </md-card>
@@ -24,7 +24,7 @@
       <md-card class="card-state card-green--2">
         <md-icon>assignment_returned</md-icon>
         <div class="state">
-          <span class="number">110</span>
+          <span class="number">{{ state.Doing || 0 }}</span>
           <span class="name">Doing</span>
         </div>
       </md-card>
@@ -33,7 +33,7 @@
       <md-card class="card-state card-green--3">
         <md-icon>assignment_turned_in</md-icon>
         <div class="state">
-          <span class="number">110</span>
+          <span class="number">{{ state.Done || 0 }}</span>
           <span class="name">Done</span>
         </div>
       </md-card>
@@ -43,30 +43,42 @@
       <md-tab-group>
         <md-tab>
           <template md-tab-label>
-            <md-icon>list</md-icon> LIST
+            <md-icon>view_list</md-icon> LIST
           </template>
 
           <md-list>
-            <md-card class="list {{ item }}" *ngFor="let item of ['todo','doing','done']; let i = index">
+            <md-card class="list {{ task.type.name }}" *ngFor="let task of tasks | orderBy:'task_type_id'; let i = index">
               <md-list-item>
                 <md-icon md-list-avatar>folder</md-icon>
-                <h4 class="task-name" md-line (click)="openTask()">folder.name</h4>
-                <p class="task-start" md-line>folder.name</p>
+                <h4 class="task-name" md-line (click)="openTask()">{{ task.name }}</h4>
+                <p class="task-start" md-line>{{ task.start | amTimeAgo: 'day' }}</p>
               </md-list-item>
               <div class="action-group">
-                <button class="action">
-                  <md-icon>assignment_returned</md-icon> <br>
+                <button class="action general edit" (click)="editTask(task)">
+                  <md-icon>edit</md-icon><br>
+                  EDIT
+                </button>
+                <button class="action general delete" (click)="deleteTask(task)">
+                  <md-icon>delete</md-icon><br>
+                  DELETE
+                </button>
+                <button class="action"
+                  *ngIf="task.type.name === 'ToDo'"
+                  (click)="changeToDoing(task)">
+                  <md-icon>assignment_returned</md-icon><br>
                   DOING
                 </button>
-                <button class="action">
-                  <md-icon>assignment_turned_in</md-icon> <br>
+                <button class="action"
+                  *ngIf="task.type.name === 'Doing'"
+                  (click)="changeToDone(task)">
+                  <md-icon>assignment_turned_in</md-icon><br>
                   DONE
                 </button>
               </div>
             </md-card>
           </md-list>
           <div class="button-create">
-            <button (click)="openDialog()">
+            <button (click)="createTaskDialog()">
               <md-icon>add</md-icon>
               <br>
               <span>Create new task</span>
@@ -77,7 +89,13 @@
           <template md-tab-label>
             <md-icon>view_column</md-icon> CARD
           </template>
-          <app-card-table></app-card-table>
+          <app-card-table [tasks]="tasks" [project]="project"></app-card-table>
+        </md-tab>
+        <md-tab>
+          <template md-tab-label>
+            <md-icon>list</md-icon> Activities
+          </template>
+          <app-card-table [tasks]="tasks" [project]="project"></app-card-table>
         </md-tab>
       </md-tab-group>
     </div>

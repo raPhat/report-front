@@ -4,12 +4,14 @@ import { CanActivate } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuardService {
+export class AuthGuardService implements CanActivate {
 
   constructor(private auth: AuthService, private router: Router) {}
 
   canActivate() {
-    console.log(this.auth.isExpired());
+    if (this.auth.isExpired()) {
+      this.router.navigate(['']);
+    }
     return true;
   }
 

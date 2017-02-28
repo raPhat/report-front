@@ -1,23 +1,20 @@
 <div class="dialog-container">
   <div md-dialog-title>
     <md-icon>add_circle</md-icon>
-    New project
+    <span *ngIf="action === 'ADD'">New project</span>
+    <span *ngIf="action === 'EDIT'">Edit project</span>
   </div>
   <md-dialog-content>
     <form [formGroup]="myForm" class="form-container" novalidate>
-      <md-input-container>
+      <md-input-container [dividerColor]="!myForm.controls.name.valid ? 'warn' : 'primary'" [hintLabel]="!myForm.controls.name.valid ? 'required' : ''">
         <input md-input placeholder="Project name" [formControlName]="'name'">
       </md-input-container>
-      <md-input-container>
+      <md-input-container [dividerColor]="!myForm.controls.description.valid ? 'warn' : 'primary'" [hintLabel]="!myForm.controls.description.valid ? 'required' : ''">
         <textarea class="description" md-input placeholder="Description" [formControlName]="'description'"></textarea>
       </md-input-container>
       <div class="input-container">
-        <div class="label">Date</div>
-        <my-date-range-picker class="max-width"
-          name="mydaterange"
-          [options]="myDateRangePickerOptions"
-          (dateRangeChanged)="onDateRangeChanged($event)"
-          [formControlName]="'range'"></my-date-range-picker>
+        <div class="label">Start date</div>
+        <my-date-picker class="max-width" name="mydaterange" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [formControlName]="'start'"></my-date-picker>
       </div>
       <div class="input-container">
         <div class="label">Image</div>
@@ -26,8 +23,11 @@
     </form>
   </md-dialog-content>
   <md-dialog-actions [attr.align]="actionsAlignment">
-    <button md-raised-button color="primary" (click)="submitForm()">
+    <button md-raised-button color="primary" (click)="submitForm()" *ngIf="action === 'ADD'">
       CREATE
+    </button>
+    <button md-raised-button color="primary" (click)="submitEdit()" *ngIf="action === 'EDIT'">
+      EDIT
     </button>
     <button md-button color="primary" md-dialog-close>CANCEL</button>
   </md-dialog-actions>

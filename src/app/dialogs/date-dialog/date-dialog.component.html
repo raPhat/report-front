@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <md-dialog-content>
+    <div class="input-container">
+      <div class="label">Start date</div>
+      <my-date-picker class="max-width" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="start"></my-date-picker>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions [attr.align]="'center'">
+    <button md-raised-button color="primary" [disabled]="!start" (click)="dialogRef.close(start)">
+      CONFIRM
+    </button>
+    <button md-button color="primary" (click)="dialogRef.close(false)">CANCEL</button>
+  </md-dialog-actions>
+</div>

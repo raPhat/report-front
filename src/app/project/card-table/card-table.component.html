@@ -1,5 +1,5 @@
 <div class="card-table-container">
-  <md-card class="column todo" dnd-droppable (onDropSuccess)="dropTodo($event)">
+  <md-card class="column todo" dnd-droppable (onDropSuccess)="dropTodo($event)" [dropZones]="['todo-zone']">
     <div class="header">
       <div class="icon">
         <md-icon>assignment</md-icon>
@@ -7,17 +7,20 @@
       To-Do
     </div>
     <md-list>
-      <div class="list" *ngFor="let item of todo; let i = index"
-        dnd-draggable
-        (onDragSuccess)="onDragSuccess(i, todo)"
-        [dragEnabled]="true"
-        [dragData]="item">
-        <md-list-item>
-          <md-icon md-list-avatar>folder</md-icon>
-          <h4 class="task-name" md-line (click)="openTask()">folder.name</h4>
-          <p class="task-start" md-line>folder.name</p>
-        </md-list-item>
-        <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+      <div *ngFor="let item of tasks; let i = index">
+        <div class="list" *ngIf="item.type.name === 'ToDo'"
+          dnd-draggable
+          (onDragSuccess)="onDragSuccess(i, 1)"
+          [dragEnabled]="true"
+          [dragData]="item"
+          [dropZones]="['doing-zone']">
+          <md-list-item>
+            <md-icon md-list-avatar>folder</md-icon>
+            <h4 class="task-name" md-line (click)="openTask()">folder.name</h4>
+            <p class="task-start" md-line>folder.name</p>
+          </md-list-item>
+          <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+        </div>
       </div>
     </md-list>
     <div class="button-create black">
@@ -28,7 +31,7 @@
       </button>
     </div> <!-- button-create -->
   </md-card>
-  <md-card class="column doing" dnd-droppable (onDropSuccess)="dropDoing($event)">
+  <md-card class="column doing" dnd-droppable (onDropSuccess)="dropDoing($event)" [dropZones]="['doing-zone']">
     <div class="header">
       <div class="icon">
         <md-icon>assignment_returned</md-icon>
@@ -36,21 +39,24 @@
       Doing
     </div>
     <md-list>
-      <div class="list" *ngFor="let item of doing"
-        dnd-draggable
-        (onDragSuccess)="onDragSuccess(i, doing)"
-        [dragEnabled]="true"
-        [dragData]="item">
-        <md-list-item>
-          <md-icon md-list-avatar>folder</md-icon>
-          <h4 class="task-name" md-line>folder.name</h4>
-          <p class="task-start" md-line>folder.name</p>
-        </md-list-item>
-        <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+      <div *ngFor="let item of tasks; let i = index">
+        <div class="list" *ngIf="item.type.name === 'Doing'"
+          dnd-draggable
+          (onDragSuccess)="onDragSuccess(i, 2)"
+          [dragEnabled]="true"
+          [dragData]="item"
+          [dropZones]="['todo-zone', 'done-zone']">
+          <md-list-item>
+            <md-icon md-list-avatar>folder</md-icon>
+            <h4 class="task-name" md-line>folder.name</h4>
+            <p class="task-start" md-line>folder.name</p>
+          </md-list-item>
+          <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+        </div>
       </div>
     </md-list>
   </md-card>
-  <md-card class="column done" dnd-droppable (onDropSuccess)="dropDone($event)">
+  <md-card class="column done" dnd-droppable (onDropSuccess)="dropDone($event)" [dropZones]="['done-zone']">
     <div class="header">
       <div class="icon">
         <md-icon>assignment_turned_in</md-icon>
@@ -58,17 +64,20 @@
       Done
     </div>
     <md-list>
-      <div class="list" *ngFor="let item of done"
-        dnd-draggable
-        (onDragSuccess)="onDragSuccess(i, done)"
-        [dragEnabled]="true"
-        [dragData]="item">
-        <md-list-item>
-          <md-icon md-list-avatar>folder</md-icon>
-          <h4 class="task-name" md-line>folder.name</h4>
-          <p class="task-start" md-line>folder.name</p>
-        </md-list-item>
-        <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+      <div *ngFor="let item of tasks; let i = index">
+        <div class="list" *ngIf="item.type.name === 'Done'"
+          dnd-draggable
+          (onDragSuccess)="onDragSuccess(i, 3)"
+          [dragEnabled]="true"
+          [dragData]="item"
+          [dropZones]="['todo-zone', 'doing-zone']">
+          <md-list-item>
+            <md-icon md-list-avatar>folder</md-icon>
+            <h4 class="task-name" md-line>folder.name</h4>
+            <p class="task-start" md-line>folder.name</p>
+          </md-list-item>
+          <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+        </div>
       </div>
     </md-list>
   </md-card>
