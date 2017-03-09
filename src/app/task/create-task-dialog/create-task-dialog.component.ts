@@ -52,8 +52,7 @@ export class CreateTaskDialogComponent implements OnInit {
     value['project_id'] = this.project.id;
     this.taskService.addTask(value)
     .then((task: Task) => {
-      console.log(task);
-      this.dialogRef.close();
+      this.dialogRef.close(task);
     })
     .catch(error => {
       console.log('error', error);

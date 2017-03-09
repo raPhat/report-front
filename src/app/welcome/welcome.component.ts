@@ -1,3 +1,5 @@
+import { RegisterDialogComponent } from './../user/register-dialog/register-dialog.component';
+import { MdDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
@@ -17,6 +19,7 @@ export class WelcomeComponent implements OnInit {
   loading = false;
 
   constructor(
+    private dialog: MdDialog,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -38,6 +41,13 @@ export class WelcomeComponent implements OnInit {
       this.loading = false;
     }).catch(() => {
       this.loading = false;
+    });
+  }
+
+  openRegister() {
+    let dialogRef = this.dialog.open(RegisterDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      //
     });
   }
 

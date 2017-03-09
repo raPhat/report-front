@@ -1,3 +1,5 @@
+import { AuthService } from './../user/auth.service';
+import { User } from './../shared/models/user';
 import { ConfirmDialogComponent } from './../dialogs/confirm-dialog/confirm-dialog.component';
 import { ProjectService } from './../project/project.service';
 import { Project } from './../shared/models/project';
@@ -14,16 +16,23 @@ export class IndexComponent implements OnInit {
 
   projects: Project[] = [];
 
+  me: User;
+
   constructor(
     private dialog: MdDialog,
-    private projectSerivce: ProjectService
+    private projectSerivce: ProjectService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.authService._me.subscribe(me => {
+      this.me = me;
+      this.projectSerivce.getMyProjects();
+    });
+    this.authService.me();
     this.projectSerivce.obProject.subscribe((res: Project[]) => {
       this.projects = res;
     });
-    this.getProjects();
   }
 
   getProjects() {

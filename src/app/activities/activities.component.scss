@@ -1,0 +1,22 @@
+.logs-container {
+  padding: 24px 0;
+  background-color: #FFF;
+}
+
+.log-container {
+  padding: 24px;
+  border-top: 1px solid #EEE;
+
+  .at {
+    color: #555;
+    font-weight: bold;
+  }
+
+  .text {
+    color: #AAA;
+    .bold {
+      color: #777;
+      font-weight: bold;
+    }
+  }
+}

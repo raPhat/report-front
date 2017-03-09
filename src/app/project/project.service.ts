@@ -56,6 +56,14 @@ export class ProjectService {
     });
   }
 
+  getMyProjects() {
+    return this.authHttp.get(this.endpoint + '/myProject')
+    .map(res => this.handler(res))
+    .subscribe((projects: Project[]) => {
+      this._project.next(projects);
+    });
+  }
+
   addProject(value) {
     return new Promise((resolve, reject) => {
       this.authHttp.post(
@@ -64,7 +72,7 @@ export class ProjectService {
       )
       .map(res => this.handler(res))
       .subscribe((project: Project) => {
-        this.getProjects();
+        this.getMyProjects();
         resolve(project);
       }, (error) => {
         reject(error);
@@ -80,7 +88,7 @@ export class ProjectService {
       )
       .map(res => this.handler(res))
       .subscribe((project: Project) => {
-        this.getProjects();
+        this.getMyProjects();
         resolve(project);
       }, (error) => {
         reject(error);
@@ -98,7 +106,7 @@ export class ProjectService {
           )
             .map(res => this.handler(res))
             .subscribe((project: Project) => {
-              this.getProjects();
+              this.getMyProjects();
               resolve(project);
             }, (error) => {
               reject(error.json());

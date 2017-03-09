@@ -2,9 +2,9 @@
   color: #FFF;
 }
 
-.right_container .md-tab-label[md-tab-label-wrapper] {
+.right_container .mat-tab-label[md-tab-label-wrapper] {
   width: 50% !important;
-  &.md-tab-label-active {
+  &.mat-tab-label-active {
     background-color: rgba(#FFF, 0.1);
   }
 }

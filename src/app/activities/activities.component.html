@@ -1,0 +1,13 @@
+<div class="logs-container">
+  <div class="log-container" *ngFor="let log of taskLogs">
+    <span class="at">
+      {{ log.created_at | amCalendar }}
+    </span>
+     -
+    <span class="text">
+      <span>{{ log.task.project.user.name }}</span>
+      <span class="bold">{{ getName(log.task_type.name) }}</span>
+      <span>{{ log.task.name }}</span>
+    </span>
+  </div>
+</div>

@@ -25,7 +25,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background-image: url(./assets/images/top_left.png);
+                background-image: url(/assets/images/top_left.png);
                 background-size: 100% auto;
                 background-repeat: no-repeat;
                 z-index: -1;
@@ -68,5 +68,5 @@
 
 md-card {
     overflow: auto;
-    margin: 12px auto;
+    margin: 12px 0;
 }

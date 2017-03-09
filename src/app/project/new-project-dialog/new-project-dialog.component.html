@@ -7,10 +7,10 @@
   <md-dialog-content>
     <form [formGroup]="myForm" class="form-container" novalidate>
       <md-input-container [dividerColor]="!myForm.controls.name.valid ? 'warn' : 'primary'" [hintLabel]="!myForm.controls.name.valid ? 'required' : ''">
-        <input md-input placeholder="Project name" [formControlName]="'name'">
+        <input mdInput placeholder="Project name" [formControlName]="'name'">
       </md-input-container>
       <md-input-container [dividerColor]="!myForm.controls.description.valid ? 'warn' : 'primary'" [hintLabel]="!myForm.controls.description.valid ? 'required' : ''">
-        <textarea class="description" md-input placeholder="Description" [formControlName]="'description'"></textarea>
+        <textarea class="description" mdInput placeholder="Description" [formControlName]="'description'"></textarea>
       </md-input-container>
       <div class="input-container">
         <div class="label">Start date</div>

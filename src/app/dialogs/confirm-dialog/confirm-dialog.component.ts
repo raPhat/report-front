@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmDialogComponent implements OnInit {
 
+  content = 'Are you sure ?';
+
   constructor(public dialogRef: MdDialogRef<ConfirmDialogComponent>) { }
 
   ngOnInit() {

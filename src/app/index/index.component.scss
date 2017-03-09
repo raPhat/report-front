@@ -1,4 +1,15 @@
-
+.me-container {
+  padding: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(#FFF, 0.75);
+  border-bottom: 1px solid rgba(#FFF, 0.15);
+  span {
+    font-weight: normal;
+  color: rgba(#FFF, 0.35);
+  }
+}
 
 .col-activity-graph {
     overflow-x: auto;

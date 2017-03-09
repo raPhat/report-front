@@ -7,6 +7,7 @@ export class Project {
   public description: string;
   public start?: string;
   public image?: any;
+  public logs?: any[];
   public created_at?: string;
   public updated_at?: string;
 

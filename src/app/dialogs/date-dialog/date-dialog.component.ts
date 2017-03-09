@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateDialogComponent implements OnInit {
 
-  private myDatePickerOptions: IMyOptions = {
-    dateFormat: 'dd/mm/yyyy',
+  myDatePickerOptions: IMyOptions = {
+    dateFormat: 'dd/mm/yyyy'
   };
 
   constructor(public dialogRef: MdDialogRef<DateDialogComponent>) { }
