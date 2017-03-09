@@ -1,5 +1,5 @@
 <div class="card-table-container">
-  <md-card class="column todo" dnd-droppable (onDropSuccess)="dropTodo($event)" [dropZones]="['todo-zone']">
+  <md-card class="column todo" dnd-droppable (onDropSuccess)="onDropSuccess($event, 'ToDo')" [dropZones]="['todo-zone']">
     <div class="header">
       <div class="icon">
         <md-icon>assignment</md-icon>
@@ -31,7 +31,7 @@
       </button>
     </div> <!-- button-create -->
   </md-card>
-  <md-card class="column doing" dnd-droppable (onDropSuccess)="dropDoing($event)" [dropZones]="['doing-zone']">
+  <md-card class="column doing" dnd-droppable (onDropSuccess)="onDropSuccess($event, 'Doing')" [dropZones]="['doing-zone']">
     <div class="header">
       <div class="icon">
         <md-icon>assignment_returned</md-icon>
@@ -56,7 +56,7 @@
       </div>
     </md-list>
   </md-card>
-  <md-card class="column done" dnd-droppable (onDropSuccess)="dropDone($event)" [dropZones]="['done-zone']">
+  <md-card class="column done" dnd-droppable (onDropSuccess)="onDropSuccess($event, 'Done')" [dropZones]="['done-zone']">
     <div class="header">
       <div class="icon">
         <md-icon>assignment_turned_in</md-icon>

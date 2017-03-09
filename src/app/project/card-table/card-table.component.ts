@@ -1,7 +1,8 @@
 import { Project } from '../../shared/models/project';
 import { TaskService } from '../../task/task.service';
 import { Task } from './../../shared/models/task';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-card-table',
@@ -14,6 +15,9 @@ export class CardTableComponent implements OnInit {
   @Input() tasks: Task[];
   @Input() project: Project;
 
+  @Output() dropChange = new EventEmitter();
+  @Output() createTask = new EventEmitter();
+
   constructor(
     private taskService: TaskService
   ) { }
@@ -21,30 +25,28 @@ export class CardTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  dropTodo(e) {
+  onDropSuccess(e, type) {
     console.log(e);
-    this.taskService.changeType('ToDo', e.dragData);
-  }
-
-  dropDoing(e) {
-    console.log(e);
-    this.taskService.changeType('Doing', e.dragData);
-  }
-
-  dropDone(e) {
-    console.log(e);
-    this.taskService.changeType('Done', e.dragData);
+    let task = e.dragData;
+    this.dropChange.emit({
+      'task': task,
+      'type': type
+    });
   }
 
   onDragSuccess(index, col) {
     console.log('drag');
     let task: any = this.tasks[index];
     task.task_type_id = col;
-    this.taskService.getTasksByProject(this.project.id);
+    // this.taskService.getTasksByProject(this.project.id);
   }
 
   openTask() {
     alert(1);
+  }
+
+  openDialog() {
+    this.createTask.emit();
   }
 
 }

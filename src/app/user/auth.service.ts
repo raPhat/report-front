@@ -43,19 +43,28 @@ export class AuthService {
     }).catch(this.handleError);
   }
 
+  register(user: any): Promise<any> {
+    return this.http.post(
+      this.endpoint + '/register',
+      user,
+      this.options
+    ).toPromise()
+    .then((res) => {
+      let ob = res.json();
+      this.login({
+        email: user.email,
+        password: user.password
+      });
+      return ob;
+    }).catch(this.handleError);
+  }
+
   me() {
     if (!this.getIdToken()) { return; }
     this.authHttp.get(this.endpoint + '/me').subscribe((res: any) => {
       // let me = JSON.parse(res._body);
       let me = res.json();
-      me = me.user;
-      this._me.next(new User(
-        me.id,
-        me.email,
-        me.name,
-        me.created_at,
-        me.updated_at
-      ));
+      this._me.next(me);
     });
   }
 

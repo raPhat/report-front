@@ -18,6 +18,7 @@ import * as _ from 'lodash';
 export class ProjectDetailComponent implements OnInit {
 
   project: Project;
+  logs: any[];
   tasks: Task[];
   state: any = {
     'ToDo': 0,
@@ -35,12 +36,13 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.project = this.route.snapshot.data['project'];
     this.projectService.obLogs.subscribe(logs => {
-      console.log(logs);
+      this.logs = logs;
+      console.log('logs', logs);
     });
+    this.projectService.getLogs(this.project.id);
     this.taskService.obTask.subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.state = _.countBy(tasks, 'type.name');
-      this.projectService.getLogs(this.project.id);
     });
     this.taskService.getTasksByProject(this.project.id);
   }
@@ -48,7 +50,9 @@ export class ProjectDetailComponent implements OnInit {
   createTaskDialog() {
     let dialogRef = this.dialog.open(CreateTaskDialogComponent);
     dialogRef.componentInstance.project = this.project;
-    dialogRef.afterClosed().subscribe(result => { });
+    dialogRef.afterClosed().subscribe(result => {
+      this.projectService.getLogs(result.project_id);
+    });
   }
 
   deleteTask(task) {
@@ -56,16 +60,26 @@ export class ProjectDetailComponent implements OnInit {
     this.taskService.removeTask(task);
   }
 
-  changeToDoing(task) {
-    this.taskService.changeType('Doing', task).then(() => {
+  changeToTaskType(task, type) {
+    let disableTimeUtil = null;
+    if (type !== 'ToDo') {
+      let type_id = (type === 'Done') ? 2 : 1;
+      let log = _.find(this.logs, {
+        'task_type_id': type_id,
+        'task_id': task.id
+      });
+      console.log('log', log);
+      disableTimeUtil = log.start;
+    }
+    this.taskService.changeType(type, task, disableTimeUtil).then(() => {
       this.taskService.getTasksByProject(this.project.id);
+      this.projectService.getLogs(this.project.id);
     });
   }
 
-  changeToDone(task) {
-    this.taskService.changeType('Done', task).then(() => {
-      this.taskService.getTasksByProject(this.project.id);
-    });
+  // after on card-table dragSuccess will call this
+  changeTypeSuccess({ task, type }) {
+    this.changeToTaskType(task, type);
   }
 
 }

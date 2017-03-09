@@ -1,0 +1,9 @@
+<md-card class="user" [ngClass]="user.role">
+  <div class="role-label">{{ user.role }}</div>
+  <div class="user-name">{{ user.name }}</div>
+  <img md-card-image src="https://freeiconshop.com/wp-content/uploads/edd/person-flat.png">
+  <md-card-actions [attr.align]="'center'">
+    <!--<button md-button>VIEW</button>-->
+    <button md-button (click)="remove()"><md-icon>delete</md-icon></button>
+  </md-card-actions>
+</md-card>

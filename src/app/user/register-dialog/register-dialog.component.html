@@ -1,0 +1,32 @@
+<div class="dialog-container">
+  <div md-dialog-title>
+    <md-icon>add_circle</md-icon>
+    Sign-Up
+  </div>
+  <md-dialog-content>
+    <form [formGroup]="myForm" class="form-container" novalidate>
+      <md-input-container>
+        <input mdInput placeholder="Your name" [formControlName]="'name'">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="E-Mail" [formControlName]="'email'">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="password" placeholder="Password" [formControlName]="'password'">
+      </md-input-container>
+      <div class="input">
+        <md-radio-group [formControlName]="'role'">
+          <md-radio-button class="radio-box" value="student">Student</md-radio-button>
+          <md-radio-button class="radio-box" value="supervisor">Supervisor</md-radio-button>
+          <md-radio-button class="radio-box" value="mentor">Mentor</md-radio-button>
+        </md-radio-group>
+      </div>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions [attr.align]="actionsAlignment">
+    <button md-raised-button color="primary" (click)="register()">
+      CREATE
+    </button>
+    <button md-button color="primary" md-dialog-close>CANCEL</button>
+  </md-dialog-actions>
+</div>

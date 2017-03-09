@@ -1,4 +1,7 @@
 <div class="dialog-container">
+  <md-dialog-content>
+    {{ content }}
+  </md-dialog-content>
   <md-dialog-actions [attr.align]="'center'">
     <button md-raised-button color="primary" (click)="dialogRef.close(true)">
       CONFIRM

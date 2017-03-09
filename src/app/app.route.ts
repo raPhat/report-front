@@ -1,3 +1,4 @@
+import { UserComponent } from './user/user.component';
 import { ProjectGuardService } from './project/project-guard.service';
 import { NgModule } from '@angular/core';
 
@@ -36,6 +37,10 @@ const appRoutes: Routes = [
           resolve: {
             project: ProjectGuardService
           }
+        },
+        {
+          path: 'account',
+          component: UserComponent
         }
       ]
     },

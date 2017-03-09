@@ -2,11 +2,11 @@
 @import '~@angular/material/core/theming/all-theme';
 @import '~material-design-icons/iconfont/material-icons.css';
 
-@include md-core();
+@include mat-core();
 
 // generated from: http://mcg.mbitson.com/#/
 /* For use in src/lib/core/theming/_palette.scss */
-$md-orange: (
+$mat-orange: (
     50 : #fdf2e7,
     100 : #fbdfc2,
     200 : #f8ca99,
@@ -39,7 +39,7 @@ $md-orange: (
     )
 );
 
-$md-grey: (
+$mat-grey: (
   50: #d4d4d4,
   100: #adadad,
   200: #919191,
@@ -72,7 +72,7 @@ $md-grey: (
   )
 );
 
-$md-red: (
+$mat-red: (
   50 : #fee9ec,
   100: #fba0ab,
   200: #f86b7b,
@@ -105,14 +105,14 @@ $md-red: (
   )
 );
 
-$color-primary: md-palette($md-orange);
-$color-accent:  md-palette($md-grey);
+$color-primary: mat-palette($mat-orange);
+$color-accent:  mat-palette($mat-grey);
 
 // The warn palette is optional (defaults to red).
-$color-warn:    md-palette($md-red);
+$color-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$rp-theme: md-light-theme($color-primary, $color-accent, $color-warn);
+$rp-theme: mat-light-theme($color-primary, $color-accent, $color-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

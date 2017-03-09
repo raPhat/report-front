@@ -10,13 +10,13 @@
             <div class="input">
               <md-icon>mail outline</md-icon>
               <md-input-container>
-                <input md-input placeholder="e-mail" [(ngModel)]="credentials.email">
+                <input mdInput placeholder="e-mail" [(ngModel)]="credentials.email">
               </md-input-container>
             </div>
             <div class="input">
               <md-icon>lock</md-icon>
               <md-input-container>
-                <input md-input type="password" placeholder="password" [(ngModel)]="credentials.password">
+                <input mdInput type="password" placeholder="password" [(ngModel)]="credentials.password">
               </md-input-container>
             </div>
             <br>
@@ -28,7 +28,7 @@
         </div><!-- welcome-card_content -->
       </div> <!-- welcome-card -->
       <br>
-      <a href="#"><md-icon>help outline</md-icon><br>Register</a>
+      <a href="#" (click)="openRegister()"><md-icon>help outline</md-icon><br>Register</a>
     </div>
   </div>
 </div>

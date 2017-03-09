@@ -61,3 +61,12 @@ hr {
         }
     }
 }
+
+.mat-radio-button {
+  .mat-radio-label-content {
+    position: relative;
+    top: -2px;
+    line-height: 20px;
+    vertical-align: middle;
+  }
+}

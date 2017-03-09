@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
+import * as moment from 'moment';
 
 @Injectable()
 export class TaskService {
@@ -60,7 +61,8 @@ export class TaskService {
       )
       .map(res => this.handler(res))
       .subscribe((task: Task) => {
-        this.getTasksByProject(value.project_id);
+        console.log('value', value);
+        this.getTasksByProject(task.project_id);
         resolve(task);
       }, (error) => {
         reject(error);
@@ -104,8 +106,17 @@ export class TaskService {
     });
   }
 
-  changeType(type, task): Promise<any>  {
+  changeType(type, task, disableUntil = null): Promise<any>  {
     let dialogRef = this.dialog.open(DateDialogComponent);
+    if (disableUntil) {
+      // ตั้งค่าไม่ให้เลือกวันของ task ที่กำหนดก่อนหน้า
+      let util = moment(disableUntil).add(-1, 'days');
+      dialogRef.componentInstance.myDatePickerOptions.disableUntil = {
+        year: util.year(),
+        month: util.month() + 1,
+        day: util.date()
+      };
+    }
     return new Promise((resolve, reject) => {
       dialogRef.afterClosed().subscribe(start => {
         if (start) {

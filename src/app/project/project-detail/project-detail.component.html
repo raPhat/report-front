@@ -64,13 +64,13 @@
                 </button>
                 <button class="action"
                   *ngIf="task.type.name === 'ToDo'"
-                  (click)="changeToDoing(task)">
+                  (click)="changeToTaskType(task, 'Doing')">
                   <md-icon>assignment_returned</md-icon><br>
                   DOING
                 </button>
                 <button class="action"
                   *ngIf="task.type.name === 'Doing'"
-                  (click)="changeToDone(task)">
+                  (click)="changeToTaskType(task, 'Done')">
                   <md-icon>assignment_turned_in</md-icon><br>
                   DONE
                 </button>
@@ -89,13 +89,13 @@
           <template md-tab-label>
             <md-icon>view_column</md-icon> CARD
           </template>
-          <app-card-table [tasks]="tasks" [project]="project"></app-card-table>
+          <app-card-table [tasks]="tasks" [project]="project" (createTask)="createTaskDialog()" (dropChange)="changeTypeSuccess($event)"></app-card-table>
         </md-tab>
         <md-tab>
           <template md-tab-label>
             <md-icon>list</md-icon> Activities
           </template>
-          <app-card-table [tasks]="tasks" [project]="project"></app-card-table>
+          <app-activities [taskLogs]="logs" [project]="project"></app-activities>
         </md-tab>
       </md-tab-group>
     </div>

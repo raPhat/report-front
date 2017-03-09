@@ -39,6 +39,9 @@ import { CreateTaskDialogComponent } from './task/create-task-dialog/create-task
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { OrderByPipe } from './shared/pipes/order-by.pipe';
 import { DateDialogComponent } from './dialogs/date-dialog/date-dialog.component';
+import { RegisterDialogComponent } from './user/register-dialog/register-dialog.component';
+import { UserCardComponent } from './user/user-card/user-card.component';
+import { ActivitiesComponent } from './activities/activities.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -67,14 +70,17 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CreateTaskDialogComponent,
     ConfirmDialogComponent,
     OrderByPipe,
-    DateDialogComponent
+    DateDialogComponent,
+    RegisterDialogComponent,
+    UserCardComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     MyDatePickerModule,
     MyDateRangePickerModule,
     ReactiveFormsModule,
@@ -103,7 +109,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     NewProjectDialogComponent,
     CreateTaskDialogComponent,
     ConfirmDialogComponent,
-    DateDialogComponent
+    DateDialogComponent,
+    RegisterDialogComponent
   ],
   bootstrap: [AppComponent]
 })
