@@ -1,6 +1,7 @@
+import { Subscription } from 'rxjs/Rx';
 import { RegisterDialogComponent } from './../user/register-dialog/register-dialog.component';
 import { MdDialog } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from '../user/auth.service';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements OnInit, OnDestroy {
 
   private credentials: any = {
     'email': '',
@@ -18,6 +19,8 @@ export class WelcomeComponent implements OnInit {
 
   loading = false;
 
+  private meSubscribe: Subscription;
+
   constructor(
     private dialog: MdDialog,
     private authService: AuthService,
@@ -25,13 +28,19 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.obMe.subscribe((res) => {
+    this.meSubscribe = this.authService.obMe.subscribe((res) => {
       console.log(res);
-      if(res) {
-        this.router.navigate(['/dashboard']);
+      if (res) {
+        this.router.navigate(['/dashboard/index', res.id]);
       }
     });
-    this.authService.me();
+    this.authService.me().catch((error) => {
+      console.log(error)
+    });
+  }
+
+  ngOnDestroy() {
+    this.meSubscribe.unsubscribe();
   }
 
   login() {

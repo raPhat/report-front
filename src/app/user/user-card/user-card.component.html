@@ -1,9 +1,13 @@
 <md-card class="user" [ngClass]="user.role">
-  <div class="role-label">{{ user.role }}</div>
-  <div class="user-name">{{ user.name }}</div>
+  <div class="user-name">
+    <md-icon>person_outline</md-icon> <br>
+    <a *ngIf="user.role === 'student'" [routerLink]="['/dashboard/index', user?.id]">{{ user.name }}</a>
+    <span *ngIf="user.role !== 'student'">{{ user.name }}</span>
+  </div>
   <img md-card-image src="https://freeiconshop.com/wp-content/uploads/edd/person-flat.png">
+  <div class="role-label">{{ user.role }}</div>
   <md-card-actions [attr.align]="'center'">
     <!--<button md-button>VIEW</button>-->
-    <button md-button (click)="remove()"><md-icon>delete</md-icon></button>
+    <!--<button md-button (click)="remove()"><md-icon>delete</md-icon></button>-->
   </md-card-actions>
 </md-card>

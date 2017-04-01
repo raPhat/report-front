@@ -1,0 +1,72 @@
+.task-detail-container {
+    width: 100%;
+    p {
+      word-break: break-all;
+    }
+}
+
+.taskName {
+  position: relative;
+  top: -4px;
+}
+
+span.datetime {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    color: #AAA;
+}
+
+.button-action-container {
+  > button {
+    margin: 0 10px;
+    width: calc(33.33% - 20px);
+  }
+}
+
+
+.view-task-container {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+@media (min-width: 767px) {
+  .view-task-container {
+    display: flex;
+    align-items: stretch;
+  }
+    .comments-scroller {
+      overflow-y: auto;
+    }
+}
+
+.task-detail-container {
+  min-height: 350px;
+}
+
+.dialog-container {
+  padding: 0;
+}
+
+.comments-container {
+  background-color: #333;
+  overflow-y: auto;
+
+  @media (max-width: 767px) {
+    .comments-scroller {
+      padding: 25px 0;
+    }
+  }
+
+  .input-comment-card {
+    background-color: #ec8127;
+  }
+
+  .bt-comment {
+    width: 100%;
+    color: rgba(#FFF, 0.5);
+  }
+}
+
+md-spinner.mat-spinner {
+  height: 36px;
+}

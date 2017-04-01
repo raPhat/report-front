@@ -16,7 +16,9 @@ export class AuthService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private options = new RequestOptions({ headers: this.headers });
 
-  _me: Subject<any> = new Subject();
+  meInfo: User;
+
+  private _me: Subject<any> = new Subject();
   obMe: Observable<any>;
 
   private keyStorage = 'auth_token';
@@ -60,17 +62,19 @@ export class AuthService {
   }
 
   me() {
-    if (!this.getIdToken()) { return; }
-    this.authHttp.get(this.endpoint + '/me').subscribe((res: any) => {
-      // let me = JSON.parse(res._body);
-      let me = res.json();
-      this._me.next(me);
+    return new Promise((resolve, reject) => {
+      if (!this.getIdToken()) { reject(false); }
+      this.authHttp.get(this.endpoint + '/me').subscribe((res: any) => {
+        let me = res.json();
+        this._me.next(me);
+        this.meInfo = me;
+        resolve(me);
+      });
     });
   }
 
   logout() {
     this.clearIdToken();
-    this._me.next();
   }
 
   setIdToken(token) {

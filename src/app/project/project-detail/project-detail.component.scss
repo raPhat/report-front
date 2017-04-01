@@ -42,10 +42,9 @@ md-card.list {
     padding: 0;
     overflow: hidden;
     .action-group {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
+      position: relative;
+      height: 72px;
+      text-align: right;
         .action {
           cursor: pointer;
           height: 100%;
@@ -78,6 +77,10 @@ md-card.list {
     .task-name {
         font-weight: bold;
         color: rgba(#FFF, 0.95);
+        cursor: pointer;
+        &:hover {
+          color: #e56514;
+        }
     }
     p.task-start {
         font-size: 12px;

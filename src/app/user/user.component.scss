@@ -1,4 +1,5 @@
 @import '../../scss/color';
+
 .my-container {
     .my-card {
         display: flex;
@@ -16,9 +17,53 @@
             background-size: cover;
         }
         small {
-            color: #999;
+            color: rgba(#FFF, 0.5);
         }
+        .my-box h2 {
+          color: #FFF;
+          span.code {
+            padding: 5px 10px;
+            font-size: 16px;
+            color: rgba(#000, 0.75);
+            background-color: rgba(#FFF, 0.75);
+            border-radius: 5px;
+          }
+        }
+        .me-description {
+          color: rgba(#FFF, 0.35);
+        }
+        background-color: #003851;
     }
+}
+
+.card-add-user {
+  background-color: #FFFCFA;
+  .text-center.group {
+    padding: 14px 0;
+    md-icon {
+      width: 24px;
+      height: 24px;
+      font-size: 48px;
+      color: rgba(#000, 0.75);
+    }
+  }
+  md-card-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(#000, 0.65);
+  }
+  .input-button {
+    margin: 25px 0 35px 0 ;
+    width: 120px;
+    height: 120px;
+  }
+  .input-button.mat-primary.mat-fab:not([ng-reflect-disabled]) {
+    // color: rgba(#FFF, 0.85);
+    background-color: #1592CC;
+  }
+  .input-code {
+    width: 100%;
+  }
 }
 
 .mentors-supervisors {
@@ -45,10 +90,6 @@
 
     .input-search-container {
       margin-top: 15px;
-    }
-
-    .input-code {
-      width: calc(100% - 65px);
     }
 
 }

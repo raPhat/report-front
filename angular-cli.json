@@ -18,9 +18,13 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/medium-editor/dist/css/medium-editor.css",
+        "../node_modules/medium-editor/dist/css/themes/beagle.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/medium-editor/dist/js/medium-editor.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "source": "environments/environment.ts",

@@ -92,6 +92,8 @@ md-card.column {
     }
     p.task-description {
         padding: 0 12px;
+        overflow-y: hidden;
+        height: 100px;
         font-size: 14px;
         color: rgba(#000, 0.5);
     }

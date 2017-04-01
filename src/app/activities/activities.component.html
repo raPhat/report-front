@@ -1,6 +1,12 @@
 <div class="logs-container">
+  <div class="log-empty" *ngIf="taskLogs.length === 0">
+    <div class="text-center">
+      NO ACTIVITY
+    </div>
+  </div>
   <div class="log-container" *ngFor="let log of taskLogs">
     <span class="at">
+      <md-icon>{{ taskService.getIconName(log.task_type.name) }}</md-icon>
       {{ log.created_at | amCalendar }}
     </span>
      -

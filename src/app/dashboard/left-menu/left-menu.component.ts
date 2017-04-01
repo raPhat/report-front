@@ -21,7 +21,7 @@ export class LeftMenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService._me.subscribe(me => {
+    this.authService.obMe.subscribe(me => {
       this.me = me;
     });
     this.authService.me();
