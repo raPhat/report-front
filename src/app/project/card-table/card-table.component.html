@@ -7,23 +7,23 @@
       To-Do
     </div>
     <md-list>
-      <div *ngFor="let item of tasks; let i = index">
-        <div class="list" *ngIf="item.type.name === 'ToDo'"
+      <div *ngFor="let task of tasks; let i = index">
+        <div class="list" *ngIf="task.type.name === 'ToDo'"
           dnd-draggable
           (onDragSuccess)="onDragSuccess(i, 1)"
           [dragEnabled]="true"
-          [dragData]="item"
+          [dragData]="task"
           [dropZones]="['doing-zone']">
           <md-list-item>
-            <md-icon md-list-avatar>folder</md-icon>
-            <h4 class="task-name" md-line (click)="openTask()">folder.name</h4>
-            <p class="task-start" md-line>folder.name</p>
+            <md-icon md-list-avatar>assignment</md-icon>
+            <h4 class="task-name" md-line (click)="openTask(task)">{{ task.name }}</h4>
+            <p class="task-start" md-line>{{ task.start | amDateFormat: 'LL' }}</p>
           </md-list-item>
-          <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+          <p class="task-description" [innerHTML]="task?.description"></p>
         </div>
       </div>
     </md-list>
-    <div class="button-create black">
+    <div class="button-create black" *ngIf="isMe">
       <button (click)="openDialog()">
         <md-icon>add</md-icon>
         <br>
@@ -39,19 +39,19 @@
       Doing
     </div>
     <md-list>
-      <div *ngFor="let item of tasks; let i = index">
-        <div class="list" *ngIf="item.type.name === 'Doing'"
+      <div *ngFor="let task of tasks; let i = index">
+        <div class="list" *ngIf="task.type.name === 'Doing'"
           dnd-draggable
           (onDragSuccess)="onDragSuccess(i, 2)"
           [dragEnabled]="true"
-          [dragData]="item"
+          [dragData]="task"
           [dropZones]="['todo-zone', 'done-zone']">
           <md-list-item>
-            <md-icon md-list-avatar>folder</md-icon>
-            <h4 class="task-name" md-line>folder.name</h4>
-            <p class="task-start" md-line>folder.name</p>
+            <md-icon md-list-avatar>assignment_returned</md-icon>
+            <h4 class="task-name" md-line (click)="openTask(task)">{{ task.name }}</h4>
+            <p class="task-start" md-line>{{ task.start | amDateFormat: 'LL' }}</p>
           </md-list-item>
-          <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+          <p class="task-description" [innerHTML]="task?.description"></p>
         </div>
       </div>
     </md-list>
@@ -64,19 +64,19 @@
       Done
     </div>
     <md-list>
-      <div *ngFor="let item of tasks; let i = index">
-        <div class="list" *ngIf="item.type.name === 'Done'"
+      <div *ngFor="let task of tasks; let i = index">
+        <div class="list" *ngIf="task.type.name === 'Done'"
           dnd-draggable
           (onDragSuccess)="onDragSuccess(i, 3)"
           [dragEnabled]="true"
-          [dragData]="item"
+          [dragData]="task"
           [dropZones]="['todo-zone', 'doing-zone']">
           <md-list-item>
-            <md-icon md-list-avatar>folder</md-icon>
-            <h4 class="task-name" md-line>folder.name</h4>
-            <p class="task-start" md-line>folder.name</p>
+            <md-icon md-list-avatar>assignment_turned_in</md-icon>
+            <h4 class="task-name" md-line (click)="openTask(task)">{{ task.name }}</h4>
+            <p class="task-start" md-line>{{ task.start | amDateFormat: 'LL' }}</p>
           </md-list-item>
-          <p class="task-description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+          <p class="task-description" [innerHTML]="task?.description"></p>
         </div>
       </div>
     </md-list>

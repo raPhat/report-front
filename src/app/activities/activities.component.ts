@@ -1,3 +1,4 @@
+import { TaskService } from '../task/task.service';
 import { _switch } from 'rxjs/operator/switch';
 import { Project } from '../shared/models/project';
 import { Component, OnInit, Input } from '@angular/core';
@@ -12,7 +13,9 @@ export class ActivitiesComponent implements OnInit {
   @Input() taskLogs: any[];
   @Input() project: Project;
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit() {
   }

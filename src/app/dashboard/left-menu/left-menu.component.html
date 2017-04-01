@@ -5,7 +5,7 @@
       <md-list-item>
         <md-icon md-list-avatar>account_box</md-icon>
         <h4 md-line>{{ me?.name }}</h4>
-        <p md-line> (student) </p>
+        <p md-line> ({{ me?.role }}) </p>
       </md-list-item>
     </a>
     <a [routerLink]="['/dashboard/index']" [routerLinkActive]="['active']">
@@ -22,7 +22,7 @@
         <p md-line> report the project </p>
       </md-list-item>
     </a>
-    <a (click)="logout()">
+    <a href="#" (click)="logout()">
       <md-list-item>
         <md-icon md-list-avatar>call_missed_outgoing</md-icon>
         <h4 md-line>Log Out</h4>

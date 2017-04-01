@@ -8,6 +8,7 @@ export class Project {
   public start?: string;
   public image?: any;
   public logs?: any[];
+  public user_id?: any;
   public created_at?: string;
   public updated_at?: string;
 

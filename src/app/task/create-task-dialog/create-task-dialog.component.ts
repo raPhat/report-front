@@ -4,7 +4,7 @@ import { Project } from './../../shared/models/project';
 import { Task } from './../../shared/models/task';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdDialogRef } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IMyOptions, IMyDateModel } from 'mydatepicker';
 
 @Component({
@@ -14,13 +14,17 @@ import { IMyOptions, IMyDateModel } from 'mydatepicker';
 })
 export class CreateTaskDialogComponent implements OnInit {
 
-  action: string = 'ADD';
+  @ViewChild('descriptionEditor') descriptionEditor;
+
+  action = 'ADD';
   task: Task = {
     name: '',
     description: '',
     start: ''
   };
   project: Project;
+
+  description = '';
 
   private myDatePickerOptions: IMyOptions = {
     dateFormat: 'dd/mm/yyyy',
@@ -49,6 +53,7 @@ export class CreateTaskDialogComponent implements OnInit {
 
   submitForm() {
     let value = this.myForm.value;
+    value['description'] = encodeURIComponent(this.descriptionEditor.nativeElement.children[0].innerHTML);
     value['project_id'] = this.project.id;
     this.taskService.addTask(value)
     .then((task: Task) => {

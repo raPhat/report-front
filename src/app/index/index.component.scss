@@ -19,3 +19,19 @@
 .projects-card-container {
   margin-bottom: 25px;
 }
+
+
+.project-statistics {
+  .statistic {
+    margin: 0 3px;
+    padding: 10px 5px;
+    width: calc(33.33% - 6px);
+    text-align: center;
+    background-color: rgba(#000, 0.15);
+    .state {
+      .number {
+        color: rgba(#FFF, 0.5);
+      }
+    }
+  }
+}

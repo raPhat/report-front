@@ -25,6 +25,7 @@ export class RegisterDialogComponent implements OnInit {
   setForm() {
     this.myForm = this.formBuilder.group({
       name: ['', Validators.required],
+      description: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
       role: ['student', Validators.required]

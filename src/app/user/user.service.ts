@@ -21,10 +21,37 @@ export class UserService {
     this.obUser = this._user.asObservable();
   }
 
+  getStatisticByUserID(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.authHttp.get(
+        this.endpoint + '/statistic/' + id
+      )
+        .subscribe((statistic: any) => {
+          resolve(statistic.json());
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
+
   getUserByCode(code): Promise<any> {
     return new Promise((resolve, reject) => {
       this.authHttp.get(
         this.endpoint + '/code/' + code
+      )
+        .map(res => this.handler(res))
+        .subscribe((user: User) => {
+          resolve(user);
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
+
+  getUser(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.authHttp.get(
+        this.endpoint + '/' + id
       )
         .map(res => this.handler(res))
         .subscribe((user: User) => {

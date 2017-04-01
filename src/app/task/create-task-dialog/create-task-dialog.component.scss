@@ -1,3 +1,4 @@
+
 md-input-container {
   width: 100%;
 }
@@ -5,4 +6,11 @@ md-input-container {
 textarea.description {
   min-height: 100px;
   resize: vertical;
+}
+
+
+:host /deep/ {
+  .medium-editor-element {
+    min-height: 100px;
+  }
 }

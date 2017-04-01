@@ -1,0 +1,47 @@
+<div flex class="view-task-container">
+  <div flex class="dialog-container col-sm-12 col-md-8">
+    <div md-dialog-title>
+      <md-icon *ngIf="task?.type.name === 'ToDo'">assignment</md-icon>
+      <md-icon *ngIf="task?.type.name === 'Doing'">assignment_returned</md-icon>
+      <md-icon *ngIf="task?.type.name === 'Done'">assignment_turned_in</md-icon>
+      <span class="taskName">{{ task?.name }}</span>
+      <span class="datetime">
+        {{ task?.start }}
+      </span>
+    </div>
+    <md-dialog-content flex>
+      <div class="task-detail-container">
+        <p [innerHTML]="task?.description"></p>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions class="button-action-container" [attr.align]="actionsAlignment" *ngIf="task?.project?.user_id === authService?.meInfo?.id">
+      <button md-button color="primary" tabindex="-1" [disabled]="task?.type.name === 'ToDo'" (click)="action('ToDo')">
+        <md-icon>assignment</md-icon>
+        ToDo
+      </button>
+      <button md-button color="primary" tabindex="-1" [disabled]="task?.type.name === 'Doing'" (click)="action('Doing')">
+        <md-icon>assignment_returned</md-icon>
+        Doing
+      </button>
+      <button md-button color="primary" tabindex="-1" [disabled]="task?.type.name === 'Done'" (click)="action('Done')">
+        <md-icon>assignment_turned_in</md-icon>
+        Done
+      </button>
+    </md-dialog-actions>
+  </div>
+  <div flex class="col-sm-12 col-md-4 comments-container">
+    <div class="comments-scroller">
+      <md-card class="input-comment-card">
+        <medium-editor #textComment [(editorModel)]="text"
+          [editorOptions]="{'toolbar': {'buttons': ['bold', 'italic', 'underline', 'h1', 'h2', 'h3']}}"
+          [editorPlaceholder]="'comment..'"></medium-editor>
+        <div class="divider white"></div>
+        <button class="bt-comment" (click)="comment()" *ngIf="!loading" md-button><md-icon>send</md-icon> COMMENT</button>
+        <md-spinner class="center-block" *ngIf="loading"></md-spinner>
+      </md-card>
+      <app-comment *ngFor="let comment of comments">
+        ....
+      </app-comment>
+    </div>
+  </div>
+</div>

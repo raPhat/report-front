@@ -4,10 +4,10 @@
       <div class="my-box my-avatar" [style.background-image]="'url(./assets/images/avatar.jpg)'">
       </div>
       <div class="my-box">
-        <h2>{{ me?.name }} <small>({{ me?.role }})</small> </h2>
+        <h2>{{ me?.name }} <small>({{ me?.role }})</small> <span *ngIf="me?.code" class="code">{{ me?.code ? '#' + me.code : '' }}</span> </h2>
         <div class="divider black"></div>
-        <div>
-          @Buzzwoo ASIA!
+        <div class="me-description">
+          {{ me?.description }}
         </div>
       </div>
     </md-card>
@@ -16,34 +16,51 @@
   <div class="divider white"></div>
 
   <div class="mentors-supervisors">
-    <md-card class="search">
-      <div class="col-md-12 counter-container">
-        <div class="counter-content">
-          <div class="counter" *ngIf="me?.role === 'student'">
-            <span>{{ me?.mentors.length }}</span> Mentors
-          </div>
-          <div class="counter" *ngIf="me?.role === 'student'">
-            <span>{{ me?.supervisors.length }}</span> Supervisors
-          </div>
-          <div class="counter" *ngIf="me?.role !== 'student'">
-            <span>{{ me?.students.length }}</span> Students
-          </div>
-        </div>
-      </div> <!-- .col-md-3 -->
+    <!--<md-card class="search">
       <div class="col-md-12 input-search-container">
         <md-input-container class="input-code" *ngIf="me?.role === 'student'">
           <input mdInput placeholder="# Mentor/Supervisor Code" [(ngModel)]="code">
         </md-input-container>
-        <button md-fab class="input-button" *ngIf="me?.role === 'student'" (click)="addByCode(code)">
+        <button md-raised-button class="input-button" *ngIf="me?.role === 'student'" color="primary" (click)="addByCode(code)">
           <md-icon>add</md-icon>
         </button>
       </div>
-    </md-card>
+    </md-card>-->
 
     <div class="ms-container">
-      <div class="row users" *ngIf="me?.users.length > 0">
-        <div class="col-md-4" *ngFor="let user of me.users">
-          <app-user-card [user]="user" (onRemove)="me = $event"></app-user-card>
+      <div class="row users">
+
+        <div class="col-md-4" *ngIf="me?.role === 'student'">
+          <md-card class="card-add-user">
+            <div class="text-center group">
+              <md-icon>group</md-icon>
+            </div>
+            <md-card-header>
+              <md-card-title>MENTOR/SUPERVISOR</md-card-title>
+              <md-card-subtitle>with #CODE (5 character)</md-card-subtitle>
+            </md-card-header>
+            <div class="text-center">
+              <button md-fab class="input-button" color="primary" [disabled]="code.length !== 5" (click)="addByCode(code)">
+                <md-icon>add</md-icon>
+              </button>
+            </div>
+            <md-card-content>
+              <md-input-container class="input-code">
+                <input mdInput placeholder="# Mentor/Supervisor Code" [(ngModel)]="code">
+              </md-input-container>
+            </md-card-content>
+          </md-card>
+        </div>
+
+        <div *ngIf="me?.role === 'student'">
+          <div class="col-md-4" *ngFor="let user of me?.users">
+            <app-user-card [user]="user" (onRemove)="me = $event"></app-user-card>
+          </div>
+        </div>
+        <div *ngIf="me?.role !== 'student'">
+          <div class="col-md-4" *ngFor="let user of me?.students">
+            <app-user-card [user]="user" (onRemove)="me = $event"></app-user-card>
+          </div>
         </div>
       </div>
     </div> <!-- .ms-container -->

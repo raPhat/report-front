@@ -23,6 +23,18 @@ export class TaskService {
     this.obTask = this._task.asObservable();
   }
 
+  getIconName(typeName) {
+    if ( typeName === 'ToDo' ) {
+      return 'assignment';
+    } else if ( typeName === 'Doing' ) {
+      return 'assignment_returned';
+    } else if ( typeName === 'Done' ) {
+      return 'assignment_turned_in';
+    }
+
+    return '';
+  }
+
   getTask(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.authHttp.get(
@@ -33,6 +45,15 @@ export class TaskService {
         resolve(task);
       }, (error) => {
         reject(error);
+      });
+    });
+  }
+
+  getTaskLogsByMe() {
+    return new Promise((resolve, reject) => {
+      this.authHttp.get(this.endpoint + '/logs/me')
+      .subscribe((logs: any) => {
+        resolve(logs.json());
       });
     });
   }

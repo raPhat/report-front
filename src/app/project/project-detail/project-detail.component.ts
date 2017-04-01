@@ -1,3 +1,5 @@
+import { ViewTaskDialogComponent } from '../../task/view-task-dialog/view-task-dialog.component';
+import { AuthService } from './../../user/auth.service';
 import { ProjectService } from './../project.service';
 import { Task } from '../../shared/models/task';
 import { TaskService } from '../../task/task.service';
@@ -6,7 +8,7 @@ import { Project } from './../../shared/models/project';
 import { CreateTaskDialogComponent } from './../../task/create-task-dialog/create-task-dialog.component';
 import { MdDialog } from '@angular/material';
 import { DashboardComponent } from './../../dashboard/dashboard.component';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,10 +17,10 @@ import * as _ from 'lodash';
   styleUrls: ['./project-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProjectDetailComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit, AfterViewInit {
 
   project: Project;
-  logs: any[];
+  logs: any[] = [];
   tasks: Task[];
   state: any = {
     'ToDo': 0,
@@ -30,7 +32,8 @@ export class ProjectDetailComponent implements OnInit {
     private dialog: MdDialog,
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -47,11 +50,16 @@ export class ProjectDetailComponent implements OnInit {
     this.taskService.getTasksByProject(this.project.id);
   }
 
+  ngAfterViewInit() {
+  }
+
   createTaskDialog() {
     let dialogRef = this.dialog.open(CreateTaskDialogComponent);
     dialogRef.componentInstance.project = this.project;
     dialogRef.afterClosed().subscribe(result => {
-      this.projectService.getLogs(result.project_id);
+      if (result) {
+        this.projectService.getLogs(result.project_id);
+      }
     });
   }
 
@@ -80,6 +88,25 @@ export class ProjectDetailComponent implements OnInit {
   // after on card-table dragSuccess will call this
   changeTypeSuccess({ task, type }) {
     this.changeToTaskType(task, type);
+  }
+
+  openTask(task) {
+    let dialogRef = this.dialog.open(
+      ViewTaskDialogComponent,
+      {
+        width: '80%'
+      }
+    );
+    dialogRef.componentInstance.task = task;
+    dialogRef.componentInstance.project = this.project;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.changeTypeSuccess({
+          'task': result.task,
+          'type': result.type
+        });
+      }
+    });
   }
 
 }

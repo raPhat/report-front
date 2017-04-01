@@ -64,6 +64,14 @@ export class ProjectService {
     });
   }
 
+  getProjectsByUserID(id) {
+    return this.authHttp.get(this.endpoint + '/user/' + id)
+    .map(res => this.handler(res))
+    .subscribe((projects: Project[]) => {
+      this._project.next(projects);
+    });
+  }
+
   addProject(value) {
     return new Promise((resolve, reject) => {
       this.authHttp.post(

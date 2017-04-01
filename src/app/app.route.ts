@@ -1,3 +1,5 @@
+import { User } from './shared/models/user';
+import { AuthService } from './user/auth.service';
 import { UserComponent } from './user/user.component';
 import { ProjectGuardService } from './project/project-guard.service';
 import { NgModule } from '@angular/core';
@@ -10,7 +12,7 @@ import { IndexComponent } from './index/index.component';
 import { AuthGuardService } from './user/auth-guard.service';
 
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 const appRoutes: Routes = [
     {
@@ -24,11 +26,15 @@ const appRoutes: Routes = [
       children: [
         {
           path: '',
-          redirectTo: 'index',
+          redirectTo: 'account',
           pathMatch: 'full'
         },
         {
           path: 'index',
+          component: IndexComponent
+        },
+        {
+          path: 'index/:id',
           component: IndexComponent
         },
         {

@@ -1,3 +1,4 @@
+import { CommentService } from './task/comment/comment.service';
 import { TaskService } from './task/task.service';
 import { ProjectGuardService } from './project/project-guard.service';
 import { DateService } from './shared/services/date.service';
@@ -20,6 +21,7 @@ import { MomentModule } from 'angular2-moment';
 import { AuthService } from './user/auth.service';
 import { UserService } from './user/user.service';
 import { AuthGuardService } from './user/auth-guard.service';
+import { MediumEditorDirective } from 'angular2-medium-editor/medium-editor.directive';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -42,6 +44,8 @@ import { DateDialogComponent } from './dialogs/date-dialog/date-dialog.component
 import { RegisterDialogComponent } from './user/register-dialog/register-dialog.component';
 import { UserCardComponent } from './user/user-card/user-card.component';
 import { ActivitiesComponent } from './activities/activities.component';
+import { ViewTaskDialogComponent } from './task/view-task-dialog/view-task-dialog.component';
+import { CommentComponent } from './task/comment/comment.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -73,7 +77,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     DateDialogComponent,
     RegisterDialogComponent,
     UserCardComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    ViewTaskDialogComponent,
+    MediumEditorDirective,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -103,14 +110,16 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ProjectService,
     DateService,
     ProjectGuardService,
-    TaskService
+    TaskService,
+    CommentService
   ],
   entryComponents: [
     NewProjectDialogComponent,
     CreateTaskDialogComponent,
     ConfirmDialogComponent,
     DateDialogComponent,
-    RegisterDialogComponent
+    RegisterDialogComponent,
+    ViewTaskDialogComponent
   ],
   bootstrap: [AppComponent]
 })
