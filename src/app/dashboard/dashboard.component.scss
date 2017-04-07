@@ -56,6 +56,7 @@
             bottom: 0;
             right: -240px;
             width: 240px;
+            overflow: auto;
             background-color: rgba(#000, 1);
             box-shadow: 0 0 15px rgba(#000, 0.75);
             @include dash-transition;

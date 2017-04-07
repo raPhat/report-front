@@ -1,0 +1,12 @@
+<div class="report-container">
+  <md-tab-group>
+    <md-tab [label]="'(' + (i+1) + ') ' + project.name" *ngFor="let project of reports; let i = index">
+      <app-print class="page-break" *ngFor="let report of project.reports; let i = index"
+       [user]="me"
+       [no]="i+1"
+       [project]="project"
+       [report]="report">
+      </app-print>
+    </md-tab>
+  </md-tab-group>
+</div>

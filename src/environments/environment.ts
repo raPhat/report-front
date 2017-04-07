@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://192.168.1.179:8005'
+  endpoint: 'http://0.0.0.0:8005'
 };

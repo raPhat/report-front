@@ -1,3 +1,4 @@
+import { ReportComponent } from './report/report.component';
 import { User } from './shared/models/user';
 import { AuthService } from './user/auth.service';
 import { UserComponent } from './user/user.component';
@@ -38,7 +39,18 @@ const appRoutes: Routes = [
           component: IndexComponent
         },
         {
+          path: 'report',
+          component: ReportComponent
+        },
+        {
           path: 'project/:id',
+          component: ProjectDetailComponent,
+          resolve: {
+            project: ProjectGuardService
+          }
+        },
+        {
+          path: 'project/:id/:taskId',
           component: ProjectDetailComponent,
           resolve: {
             project: ProjectGuardService

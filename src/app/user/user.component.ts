@@ -1,3 +1,6 @@
+import { environment } from '../../environments/environment';
+import { MdDialog } from '@angular/material';
+import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 import { Subscription } from 'rxjs/Rx';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
@@ -11,12 +14,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit, OnDestroy {
 
+  private endpoint = environment.endpoint;
+
   me: User;
   code = '';
 
   private meSubscribe: Subscription;
 
   constructor(
+    private dialog: MdDialog,
     private authService: AuthService,
     private userService: UserService
   ) { }
@@ -39,6 +45,15 @@ export class UserComponent implements OnInit, OnDestroy {
       this.code = '';
     }).catch(err => {
       console.error(err);
+    });
+  }
+
+  edit() {
+    let dialogRef = this.dialog.open(RegisterDialogComponent);
+    dialogRef.componentInstance.user = this.me;
+    dialogRef.componentInstance.type = 'EDIT';
+    dialogRef.afterClosed().subscribe(result => {
+      this.authService.me();
     });
   }
 

@@ -49,7 +49,10 @@ export class CardTableComponent implements OnInit {
   }
 
   openTask(task) {
-    let dialogRef = this.dialog.open(ViewTaskDialogComponent);
+    let dialogRef = this.dialog.open(ViewTaskDialogComponent,
+      {
+        width: '80%'
+      });
     dialogRef.componentInstance.task = task;
     dialogRef.componentInstance.project = this.project;
     dialogRef.afterClosed().subscribe(result => {

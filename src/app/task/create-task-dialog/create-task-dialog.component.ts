@@ -44,6 +44,7 @@ export class CreateTaskDialogComponent implements OnInit {
   }
 
   setForm() {
+    this.description = this.task.description;
     this.myForm = this.formBuilder.group({
       name: [this.task.name, Validators.required],
       description: [this.task.description, Validators.required],
@@ -56,6 +57,19 @@ export class CreateTaskDialogComponent implements OnInit {
     value['description'] = encodeURIComponent(this.descriptionEditor.nativeElement.children[0].innerHTML);
     value['project_id'] = this.project.id;
     this.taskService.addTask(value)
+    .then((task: Task) => {
+      this.dialogRef.close(task);
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
+  }
+
+  editForm() {
+    let value = this.myForm.value;
+    value['description'] = encodeURIComponent(this.descriptionEditor.nativeElement.children[0].innerHTML);
+    value['project_id'] = this.project.id;
+    this.taskService.editTask(value, this.task.id)
     .then((task: Task) => {
       this.dialogRef.close(task);
     })

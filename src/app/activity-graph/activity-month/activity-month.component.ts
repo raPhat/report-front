@@ -8,15 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ActivityMonthComponent implements OnInit {
 
   @Input() month: any;
+  @Input() logs = [];
 
   private monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
   monthName: String;
   days: any;
 
+  date: any;
+
   constructor() { }
 
   ngOnInit() {
-    this.daysInMonth(this.month.no, 2017);
+    this.daysInMonth(this.month.no, this.month.year);
   }
 
   daysInMonth(month,year) {

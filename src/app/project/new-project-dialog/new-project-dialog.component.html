@@ -16,10 +16,10 @@
         <div class="label">Start date</div>
         <my-date-picker class="max-width" name="mydaterange" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [formControlName]="'start'"></my-date-picker>
       </div>
-      <div class="input-container">
+      <!--<div class="input-container">
         <div class="label">Image</div>
         <input type="file" placeholder="Image">
-      </div>
+      </div>-->
     </form>
   </md-dialog-content>
   <md-dialog-actions [attr.align]="actionsAlignment">

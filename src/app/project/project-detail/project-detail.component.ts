@@ -28,6 +28,8 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
     'Done': 0
   };
 
+  openedTask = false;
+
   constructor(
     private dialog: MdDialog,
     private route: ActivatedRoute,
@@ -46,6 +48,13 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
     this.taskService.obTask.subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.state = _.countBy(tasks, 'type.name');
+
+      const id = this.route.snapshot.params['taskId'] || null;
+      if (!this.openedTask && id) {
+        let task = _.find(tasks, ['id', parseInt(id)]);
+        this.openTask(task);
+        this.openedTask = true;
+      }
     });
     this.taskService.getTasksByProject(this.project.id);
   }
@@ -66,6 +75,18 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
   deleteTask(task) {
     console.log(task);
     this.taskService.removeTask(task);
+  }
+
+  editTask(task) {
+    let dialogRef = this.dialog.open(CreateTaskDialogComponent);
+    dialogRef.componentInstance.project = this.project;
+    dialogRef.componentInstance.task = task;
+    dialogRef.componentInstance.action = 'EDIT';
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.projectService.getLogs(result.project_id);
+      }
+    });
   }
 
   changeToTaskType(task, type) {

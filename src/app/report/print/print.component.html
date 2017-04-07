@@ -1,0 +1,119 @@
+<div class="print-container">
+  <div class="header">
+    <div class="logo">
+      <img src="./assets/images/camt_logo.png" alt="">
+    </div>
+    <div class="text">
+      Cooperative Education <br>
+      Software Engineering Program <br>
+      College of Arts, Media and Technology, Chiang Mai University
+    </div>
+    <div style="clear: both"></div>
+  </div>
+  <div class="hr"></div>
+  <div class="text-right">
+    SE-011
+  </div>
+  <div class="title">
+    WEEKLY REPORT
+  </div>
+  <div class="no">
+    Week <span class="no-text">{{ no }}</span> / {{ report?.start | amDateFormat: 'LL' }} - {{ report?.end | amDateFormat: 'LL' }}
+  </div>
+  <div class="info row">
+    <div class="col-xs-6 info-row">
+      <div class="col-xs-5 col-md-3">
+        First Name
+      </div>
+      <div class="col-xs-7 col-md-9 info-input">
+        {{ user?.first_name }}
+      </div>
+    </div>
+    <div class="col-xs-6 info-row">
+      <div class="col-xs-5 col-md-3">
+        Last Name
+      </div>
+      <div class="col-xs-7 col-md-9 info-input">
+        {{ user?.last_name }}
+      </div>
+    </div>
+    <div class="col-xs-6 info-row">
+      <div class="col-xs-5 col-md-3">
+        Company
+      </div>
+      <div class="col-xs-7 col-md-9 info-input">
+        {{ user?.company }}
+      </div>
+    </div>
+    <div class="col-xs-6 info-row">
+      <div class="col-xs-5 col-md-3">
+        Position
+      </div>
+      <div class="col-xs-7 col-md-9 info-input">
+        {{ user?.position }}
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-header">
+      Work Details
+    </div>
+    <div class="content-detail">
+      <div *ngIf="report?.logs.length === 0">-</div>
+      <div *ngIf="report?.logs.length > 0">
+        <strong>PROJECT</strong> : {{ project?.name }}
+        <div class="divider black"></div>
+        <p>
+          {{ start[randPG] }}
+          <span *ngFor="let log of inProgressLogs; let i = index">
+            ({{ (i+1) }}) <strong>{{ log?.task?.name }}</strong> {{ (i > 0) ? ',': '' }}
+          </span>.
+        </p>
+        <p>
+          {{ (randDone === 0) ? 'Some tasks were done including' : '' }}
+          <span *ngFor="let log of doneLogs; let i = index">
+            ({{ (i+1) }}) <strong>{{ log?.task?.name }}</strong> {{ (i > 0) ? ',': '' }}
+          </span>
+          {{ (randDone === 1) ? 'were done' : '' }}.
+        </p>
+      </div>
+    </div>
+    <div class="content-comment">
+      <div *ngIf="comments.length === 0">-</div>
+      <div *ngIf="comments.length > 0">
+        <ul>
+          <li *ngFor="let comment of comments" [innerHTML]="comment?.text | safeHtml">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sign row text-center">
+    <div class="col-xs-6">
+      <div class="sign-pic text-center">
+        <img *ngIf="user?.sign" width="250" [src]="endpoint + '/uploads/' + user?.sign" alt="">
+      </div>
+      <div class="student">
+        ( {{ user?.first_name }} {{ user?.last_name }} ) <br>
+        <strong>Student</strong>
+      </div>
+    </div> <!-- .xs -->
+    <div class="col-xs-6" *ngIf="user?.mentors.length > 0">
+      <div class="sign-pic">
+        <img *ngIf="user?.mentors[0]?.sign" width="250" [src]="endpoint + '/uploads/' + user?.mentors[0]?.sign" alt="">
+      </div>
+      <div class="mentor">
+        ( {{ user?.mentors[0].first_name }} {{ user?.mentors[0].last_name }} ) <br>
+        <strong>Mentor</strong>
+      </div>
+    </div> <!-- .xs -->
+    <div class="col-xs-6" *ngIf="user?.mentors.length === 0">
+      <div class="sign-pic">
+        -
+      </div>
+    </div> <!-- .xs -->
+  </div>
+
+</div>
+
+<div class="page-break"></div>

@@ -1,1 +1,1 @@
-<div class="day-box" [ngClass]="[frequency]" md-tooltip="some message" tooltip-position="below"></div>
+<div class="day-box" [ngClass]="[frequency]" [md-tooltip]="(date | amDateFormat: 'LL') + ' (' + todayLogs.length + ')'" tooltip-position="below"></div>

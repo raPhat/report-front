@@ -21,6 +21,9 @@ export class AuthService {
   private _me: Subject<any> = new Subject();
   obMe: Observable<any>;
 
+  private _notifies: Subject<any> = new Subject();
+  obNotifies: Observable<any>;
+
   private keyStorage = 'auth_token';
 
   constructor(
@@ -29,6 +32,7 @@ export class AuthService {
     private jwtHelper: JwtHelper
   ) {
     this.obMe = this._me.asObservable();
+    this.obNotifies = this._notifies.asObservable();
   }
 
   login(credentials: Object): Promise<any> {
@@ -68,7 +72,18 @@ export class AuthService {
         let me = res.json();
         this._me.next(me);
         this.meInfo = me;
+        this.getNotifies();
         resolve(me);
+      });
+    });
+  }
+
+  getNotifies() {
+    return new Promise((resolve, reject) => {
+      this.authHttp.get(this.endpoint + '/notifies').subscribe((res: any) => {
+        let notifies = res.json();
+        this._notifies.next(notifies);
+        resolve(notifies);
       });
     });
   }

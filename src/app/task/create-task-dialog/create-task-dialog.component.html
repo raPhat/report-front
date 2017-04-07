@@ -1,7 +1,11 @@
 <div class="dialog-container">
-  <div md-dialog-title>
+  <div md-dialog-title *ngIf="action === 'ADD'">
     <md-icon>add_circle</md-icon>
     New task
+  </div>
+  <div md-dialog-title *ngIf="action === 'EDIT'">
+    <md-icon>edit</md-icon>
+    Edit task
   </div>
   <md-dialog-content>
     <form [formGroup]="myForm" class="form-container" novalidate>
@@ -14,19 +18,22 @@
       <medium-editor #descriptionEditor [(editorModel)]="description"
         [editorOptions]="{'toolbar': {'buttons': ['bold', 'italic', 'underline', 'h1', 'h2', 'h3']}}"
         [editorPlaceholder]="'description..'"></medium-editor>
-      <div class="input-container">
+      <div class="input-container" *ngIf="action === 'ADD'">
         <div class="label">Start date</div>
         <my-date-picker class="max-width" name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [formControlName]="'start'"></my-date-picker>
       </div>
-      <div class="input-container">
+      <!--<div class="input-container">
         <div class="label">Image</div>
         <input type="file" placeholder="Image">
-      </div>
+      </div>-->
     </form>
   </md-dialog-content>
   <md-dialog-actions [attr.align]="actionsAlignment">
-    <button md-raised-button color="primary" (click)="submitForm()">
+    <button md-raised-button color="primary" (click)="submitForm()" *ngIf="action === 'ADD'">
       CREATE
+    </button>
+    <button md-raised-button color="primary" (click)="editForm()" *ngIf="action === 'EDIT'">
+      UPDATE
     </button>
     <button md-button color="primary" md-dialog-close>CANCEL</button>
   </md-dialog-actions>

@@ -1,6 +1,18 @@
 @import '../../scss/color';
 
 .my-container {
+  .edit-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  .col-new {
+    margin: 10px 0;
+    color: rgba(#FFF, 0.5);
+    strong {
+      color: rgba(#FFF, 0.95);
+    }
+  }
     .my-card {
         display: flex;
         justify-content: flex-start;

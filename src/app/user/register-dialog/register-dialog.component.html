@@ -1,15 +1,54 @@
 <div class="dialog-container">
-  <div md-dialog-title>
+  <div md-dialog-title *ngIf="type === 'ADD'">
     <md-icon>add_circle</md-icon>
     Sign-Up
   </div>
+  <div md-dialog-title *ngIf="type === 'EDIT'">
+    <md-icon>edit</md-icon>
+    Edit
+  </div>
   <md-dialog-content>
+    <div class="my-box my-avatar" [style.background-image]="'url(' + getAvatar() + ')'"></div>
+    <div class="text-center">
+      <label class="upload-button">
+          <input type="file"
+                class="hidden"
+                ngFileSelect
+                [options]="options"
+                (onUpload)="handleUpload($event)">
+          UPLOAD AVATAR
+        </label>
+    </div>
+    <div class="divider black"></div>
+      <div class="text-center">
+        <img width="250" *ngIf="user?.sign && !responseSign" [src]="endpoint + '/uploads/' + user?.sign" alt="">
+        <img width="250" *ngIf="responseSign && !user?.sign" [src]="endpoint + '/uploads/' + responseSign" alt="">
+        <br>
+        <label class="upload-button">
+            <input type="file"
+                  class="hidden"
+                  ngFileSelect
+                  [options]="options"
+                  (onUpload)="handleSignUpload($event)">
+            UPLOAD SIGN
+          </label>
+      </div>
+    <div class="divider black"></div>
     <form [formGroup]="myForm" class="form-container" novalidate>
       <md-input-container>
-        <input mdInput placeholder="Your name" [formControlName]="'name'">
+        <input mdInput placeholder="First name" [formControlName]="'first_name'">
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Your description" [formControlName]="'description'">
+        <input mdInput placeholder="Last name" [formControlName]="'last_name'">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Description" [formControlName]="'description'">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Company" [formControlName]="'company'">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Position" [formControlName]="'position'">
       </md-input-container>
       <md-input-container>
         <input mdInput placeholder="E-Mail" [formControlName]="'email'">
@@ -17,7 +56,11 @@
       <md-input-container>
         <input mdInput type="password" placeholder="Password" [formControlName]="'password'">
       </md-input-container>
-      <div class="input">
+      <div class="input-container" *ngIf="myForm.controls['role']._value === 'student'">
+        <div class="label">Start Internship</div>
+        <my-date-picker class="max-width" name="mydaterange" [options]="myDatePickerOptions" [formControlName]="'start'"></my-date-picker>
+      </div>
+      <div class="input" *ngIf="type === 'ADD'">
         <md-radio-group [formControlName]="'role'">
           <md-radio-button class="radio-box" value="student">Student</md-radio-button>
           <md-radio-button class="radio-box" value="supervisor">Supervisor</md-radio-button>
@@ -27,8 +70,11 @@
     </form>
   </md-dialog-content>
   <md-dialog-actions [attr.align]="actionsAlignment">
-    <button md-raised-button color="primary" (click)="register()">
+    <button md-raised-button color="primary" (click)="register()" *ngIf="type === 'ADD'">
       CREATE
+    </button>
+    <button md-raised-button color="primary" (click)="edit()" *ngIf="type === 'EDIT'">
+      UPDATE
     </button>
     <button md-button color="primary" md-dialog-close>CANCEL</button>
   </md-dialog-actions>

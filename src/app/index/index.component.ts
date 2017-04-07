@@ -10,6 +10,7 @@ import { NewProjectDialogComponent } from './../project/new-project-dialog/new-p
 import { MdDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-index',
@@ -23,6 +24,8 @@ export class IndexComponent implements OnInit {
   me: User;
   user: User;
   statistic: any;
+
+  total_days = 0;
 
   logs: any = [];
 
@@ -63,6 +66,8 @@ export class IndexComponent implements OnInit {
           this.logs = logs;
         });
       }
+
+      this.total_days = moment().diff(me.start, 'days');
     });
     this.authService.me();
 

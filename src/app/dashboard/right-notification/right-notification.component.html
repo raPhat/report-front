@@ -1,17 +1,36 @@
 <div class="right_container">
   <md-tab-group>
-    <md-tab label="Today">
+    <md-tab [label]="l" *ngFor="let l of list">
       <md-list>
-        <a href="#" *ngFor="let item of [0,1,2]">
+        <a [routerLink]="[
+          '/dashboard/project/',
+          (notify?.type === 'TASK') ? notify?.task_log?.task?.project?.id : notify?.comment?.task?.project?.id,
+          (notify?.type === 'TASK') ? notify?.task_log?.task?.id :  notify?.comment?.task?.id
+        ]"  *ngFor="let notify of notifies | notifyOrder:l ">
           <md-list-item>
-            <md-icon md-list-avatar>folder</md-icon>
-            <h4 class="title" md-line>folder.name</h4>
-            <p md-line>folder.name</p>
+            <md-icon md-list-avatar>
+              {{ (notify.type === 'TASK') ? 'assignment' : 'comment' }}
+            </md-icon>
+            <h4 class="title" md-line>
+              <div *ngIf="notify.type === 'COMMENT'">
+                {{ notify?.comment?.user?.name }}
+              </div>
+              <div *ngIf="notify.type === 'TASK'">
+                {{ notify?.task_log?.task?.project?.user?.name }}
+              </div>
+            </h4>
+            <p md-line>
+              {{ notify?.created_at }}
+            </p>
           </md-list-item>
-          <p class="description"> Component styles normally apply only to the HTML in the component's own template -- reference </p>
+          <p class="description" *ngIf="notify.type === 'COMMENT'">
+              TASK#{{ notify?.comment?.task?.id }} in {{ notify?.comment?.task?.project?.name }}
+          </p>
+          <p class="description" *ngIf="notify.type === 'TASK'">
+            move task #<span class="bold">{{ notify?.task_log?.task?.name }}</span> to <span class="bold upper">{{ notify?.task_log?.task_type?.name }}</span>.
+          </p>
         </a>
       </md-list>
     </md-tab>
-    <md-tab label="All">Content 2</md-tab>
   </md-tab-group>
 </div>

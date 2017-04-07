@@ -1,3 +1,4 @@
+import { AngularFire } from 'angularfire2';
 import { DateDialogComponent } from './../dialogs/date-dialog/date-dialog.component';
 import { ConfirmDialogComponent } from './../dialogs/confirm-dialog/confirm-dialog.component';
 import { MdDialog } from '@angular/material';
@@ -18,7 +19,8 @@ export class TaskService {
 
   constructor(
     private dialog: MdDialog,
-    private authHttp: AuthHttp
+    private authHttp: AuthHttp,
+    private af: AngularFire
   ) {
     this.obTask = this._task.asObservable();
   }
@@ -52,6 +54,15 @@ export class TaskService {
   getTaskLogsByMe() {
     return new Promise((resolve, reject) => {
       this.authHttp.get(this.endpoint + '/logs/me')
+      .subscribe((logs: any) => {
+        resolve(logs.json());
+      });
+    });
+  }
+
+  getTaskLogsByMeId() {
+    return new Promise((resolve, reject) => {
+      this.authHttp.get(this.endpoint + '/logs')
       .subscribe((logs: any) => {
         resolve(logs.json());
       });
@@ -151,6 +162,12 @@ export class TaskService {
             .map(res => this.handler(res))
             .subscribe((t: Task) => {
               this.getTasksByProject(task.project_id);
+
+              t['notify_ids'].forEach((id) => {
+                const noti = this.af.database.object('/user/' + id);
+                noti.set({ task: t.id });
+              });
+
               resolve(t);
             }, (error) => {
               reject(error.json());
