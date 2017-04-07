@@ -9,6 +9,9 @@ export class Comment {
   public created_at?: string;
   public updated_at?: string;
 
+  public task?: any;
+  public user?: any;
+
   constructor(comment: Comment) {
     _.forOwn(comment, (value, key) => {
       this[key] = value;

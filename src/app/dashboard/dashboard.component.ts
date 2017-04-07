@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   setPosition() {
-    if(window.innerWidth > 991) {
+    if (window.innerWidth > 991) {
       this.leftOpen = true;
       this.rightOpen = true;
     } else {

@@ -6,3 +6,23 @@ md-input-container {
     margin: 0 10px;
     font-size: 14px;
 }
+
+.my-avatar {
+    margin: 15px auto;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #EEE;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.upload-button {
+    padding: 5px 15px;
+    color: #666;
+    background-color: #EEE;
+    border-radius: 5px;
+    &:hover {
+      color: #FFF;
+      background-color: #666;
+    }
+}

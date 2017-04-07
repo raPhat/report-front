@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../task/task.service';
+import { User } from './../shared/models/user';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -10,22 +12,33 @@ export class ActivityGraphComponent implements OnInit {
 
   month: any = [];
 
-  start: any = {
-    'month': 8,
-    'year': 2016
-  };
+  logs = [];
 
-  constructor() { }
+  @Input() me: User;
+
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit() {
     this.setMonth();
+
+    this.taskService.getTaskLogsByMeId().then((logs: any) => {
+      this.logs = logs;
+      console.log(logs);
+    });
   }
 
   setMonth() {
-    let month = this.start.month;
-    let year = this.start.year;
+    let mydate = new Date(this.me.start);
+
+    // let month = this.start.month;
+    let month = mydate.getMonth();
+    // let year = this.start.year;
+    let year = mydate.getFullYear();
+
     for(let i=1; i<=12; i++) {
-      if(month !== 12) {
+      if (month !== 12) {
         month++;
       } else {
         month = 1;
@@ -34,7 +47,7 @@ export class ActivityGraphComponent implements OnInit {
       this.month.push({
         'no': month,
         'year': year
-      })
+      });
     }
   }
 

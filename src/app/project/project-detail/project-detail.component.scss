@@ -78,6 +78,9 @@ md-card.list {
         font-weight: bold;
         color: rgba(#FFF, 0.95);
         cursor: pointer;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-x: hidden !important;
         &:hover {
           color: #e56514;
         }

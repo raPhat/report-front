@@ -39,9 +39,7 @@
         <button class="bt-comment" (click)="comment()" *ngIf="!loading" md-button><md-icon>send</md-icon> COMMENT</button>
         <md-spinner class="center-block" *ngIf="loading"></md-spinner>
       </md-card>
-      <app-comment *ngFor="let comment of comments">
-        ....
-      </app-comment>
+      <app-comment [comment]="comment" *ngFor="let comment of comments"></app-comment>
     </div>
   </div>
 </div>

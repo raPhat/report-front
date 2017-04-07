@@ -35,5 +35,12 @@
     margin-top: 0;
     padding: 0 16px 10px 16px;
     color: rgba(#FFF, 0.65);
+    span.bold {
+      font-weight: bold;
+      color: rgba(#FFF, 0.85);
+      &.upper {
+        text-transform: uppercase;
+      }
+    }
   } // a .description
 }

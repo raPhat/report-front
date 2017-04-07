@@ -1,3 +1,5 @@
+import { ReportDateService } from './shared/services/report-date.service';
+import { MediumEditorDirective } from './shared/directives/medium-editor.directive';
 import { CommentService } from './task/comment/comment.service';
 import { TaskService } from './task/task.service';
 import { ProjectGuardService } from './project/project-guard.service';
@@ -17,11 +19,13 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { DndModule } from 'ng2-dnd';
 import { MomentModule } from 'angular2-moment';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { AngularFireModule } from 'angularfire2';
+import { NgUploaderModule } from 'ngx-uploader';
 
 import { AuthService } from './user/auth.service';
 import { UserService } from './user/user.service';
 import { AuthGuardService } from './user/auth-guard.service';
-import { MediumEditorDirective } from 'angular2-medium-editor/medium-editor.directive';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -46,6 +50,10 @@ import { UserCardComponent } from './user/user-card/user-card.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { ViewTaskDialogComponent } from './task/view-task-dialog/view-task-dialog.component';
 import { CommentComponent } from './task/comment/comment.component';
+import { NotifyOrderPipe } from './shared/pipes/notify-order.pipe';
+import { ReportComponent } from './report/report.component';
+import { PrintComponent } from './report/print/print.component';
+import { SafeHtmlPipe } from './shared/pipes/safe-html.pipe';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -54,6 +62,16 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
           globalHeaders: [{'Content-Type': 'application/json'}],
      }), http, options);
 }
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: 'AIzaSyAHnJISxPvaXKeTS_FPIFGiHg59LCyjhE0',
+  authDomain: 'report-ed54c.firebaseapp.com',
+  databaseURL: 'https://report-ed54c.firebaseio.com',
+  projectId: 'report-ed54c',
+  storageBucket: 'report-ed54c.appspot.com',
+  messagingSenderId: '750356266248'
+};
 
 @NgModule({
   declarations: [
@@ -80,7 +98,11 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ActivitiesComponent,
     ViewTaskDialogComponent,
     MediumEditorDirective,
-    CommentComponent
+    CommentComponent,
+    NotifyOrderPipe,
+    ReportComponent,
+    PrintComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -92,7 +114,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     MyDateRangePickerModule,
     ReactiveFormsModule,
     DndModule.forRoot(),
-    MomentModule
+    MomentModule,
+    NgUploaderModule,
+    SimpleNotificationsModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [
     {
@@ -111,7 +136,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     DateService,
     ProjectGuardService,
     TaskService,
-    CommentService
+    CommentService,
+    ReportDateService
   ],
   entryComponents: [
     NewProjectDialogComponent,

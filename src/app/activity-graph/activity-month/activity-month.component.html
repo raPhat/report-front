@@ -2,5 +2,5 @@
   {{ monthName }}
 </div>
 <div class="month-box">
-  <day-box *ngFor="let d of days"></day-box>
+  <day-box [logs]="logs" [day]="i + 1" [month]="month.no" [year]="month.year" *ngFor="let d of days; let i = index"></day-box>
 </div>

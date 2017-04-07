@@ -1,0 +1,27 @@
+@media print {
+    .dash-left,
+    .dash-right {
+        display: none;
+    }
+    .dash-center {
+        position: relative;
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .page-break {
+        page-break-after: always;
+    }
+
+    div {
+        page-break-inside: avoid;
+    }
+
+    .report-container .mat-tab-labels {
+        display: none;
+    }
+}
+
+.report-container .mat-tab-labels {
+    color: #FFF;
+}

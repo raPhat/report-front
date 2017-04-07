@@ -5,7 +5,7 @@
 
   <div class="col-xs-12">
     <div class="me-container">
-      {{ user?.name }} <span>({{ user?.role }})</span>
+      {{ user?.first_name }} {{ user?.last_name }} <span>({{ user?.role }})</span>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
         <md-card class="card-state card-red--3">
           <md-icon>alarm</md-icon>
           <div class="state">
-            <span class="number">{{ statistic?.total_days || '0' }}</span>
+            <span class="number">{{ total_days || '0' }}</span>
             <span class="name">days</span>
           </div>
         </md-card>
@@ -59,7 +59,7 @@
   <div class="col-sm-12">
     <md-card>
       <div class="col-sm-12 col-activity-graph">
-        <activity-graph></activity-graph>
+        <activity-graph [me]="me"></activity-graph>
       </div>
       <!-- col-sm-9 -->
     </md-card>

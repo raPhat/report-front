@@ -34,6 +34,34 @@ export class UserService {
     });
   }
 
+  update(value, id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.authHttp.put(
+        this.endpoint + '/' + id,
+        value
+      )
+        .map(res => this.handler(res))
+        .subscribe((user: User) => {
+          resolve(user);
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
+
+  getMyReport(dates): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.authHttp.get(
+        this.endpoint + '/reports?dates=' + JSON.stringify(dates)
+      )
+        .subscribe((obj: any) => {
+          resolve(obj.json());
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
+
   getUserByCode(code): Promise<any> {
     return new Promise((resolve, reject) => {
       this.authHttp.get(

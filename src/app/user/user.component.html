@@ -1,14 +1,23 @@
 <div>
   <div class="my-container">
     <md-card class="my-card">
-      <div class="my-box my-avatar" [style.background-image]="'url(./assets/images/avatar.jpg)'">
+      <button class="edit-button" md-fab (click)="edit()"><md-icon>edit</md-icon></button>
+      <div class="my-box my-avatar" [style.background-image]="(me?.avatar) ? 'url(' + endpoint + '/uploads/' + me?.avatar + ')' : 'url(./assets/images/avatar.svg)'">
       </div>
       <div class="my-box">
-        <h2>{{ me?.name }} <small>({{ me?.role }})</small> <span *ngIf="me?.code" class="code">{{ me?.code ? '#' + me.code : '' }}</span> </h2>
+        <h2>{{ me?.first_name }} {{ me?.last_name }} <small>({{ me?.role }})</small> <span *ngIf="me?.code" class="code">{{ me?.code ? '#' + me.code : '' }}</span> </h2>
         <div class="divider black"></div>
         <div class="me-description">
           {{ me?.description }}
         </div>
+        <br>
+        <div class="col-new company">
+          <strong>COMPANY: </strong> {{ me?.company }}
+        </div>
+        <div class="col-new position">
+          <strong>POSITION: </strong> {{ me?.position }}
+        </div>
+        <div></div>
       </div>
     </md-card>
   </div>

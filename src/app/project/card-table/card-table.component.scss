@@ -83,6 +83,9 @@ md-card.column {
         cursor: pointer;
         font-weight: bold;
         color: rgba(#000, 0.75);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-x: hidden !important;
         &:hover {
             color: #ec8127;
         }
